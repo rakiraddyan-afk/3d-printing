@@ -5,10 +5,47 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>2LIFE | 3D Printed Parts for Classic European Cars</title>
 <meta name="description" content="2LIFE reverse-engineers and 3D prints fragile, discontinued plastic parts for classic European cars: trim clips, dashboard parts, housings and more.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0a'/%3E%3Cpath d='M8 22 L16 10 L24 22 Z' fill='none' stroke='%23ff6a1a' stroke-width='2'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0a'/%3E%3Ccircle cx='16' cy='16' r='13' fill='none' stroke='%23cfd3d8' stroke-width='1.4'/%3E%3Cpath d='M8 22 L16 9 L24 22 Z' fill='none' stroke='%23ff6a1a' stroke-width='2'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+
+<!-- Shared chrome-badge gradients, reused by the header logo, language
+     gate mark, and hero orbit center so the "2LIFE" emblem reads as one
+     consistent metal badge (bezel + orange pinstripe seam + raised layers)
+     wherever it appears. -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="badgeRing" x1="15%" y1="10%" x2="85%" y2="90%">
+      <stop offset="0%" stop-color="#fdfdfe"/>
+      <stop offset="22%" stop-color="#cfd3d8"/>
+      <stop offset="45%" stop-color="#6c7075"/>
+      <stop offset="55%" stop-color="#26282b"/>
+      <stop offset="78%" stop-color="#6c7075"/>
+      <stop offset="100%" stop-color="#cfd3d8"/>
+    </linearGradient>
+    <radialGradient id="badgeFace" cx="35%" cy="30%" r="75%">
+      <stop offset="0%" stop-color="#2a2c2f"/>
+      <stop offset="100%" stop-color="#0e0f11"/>
+    </radialGradient>
+    <linearGradient id="layerHi" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#c7c9cd"/>
+    </linearGradient>
+    <linearGradient id="layerMid" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e3e4e7"/>
+      <stop offset="100%" stop-color="#8b8d92"/>
+    </linearGradient>
+    <linearGradient id="layerBase" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffb385"/>
+      <stop offset="100%" stop-color="#e0550a"/>
+    </linearGradient>
+    <radialGradient id="badgeGloss" cx="32%" cy="24%" r="45%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+</svg>
 
 <a class="skip-link" href="#main" data-i18n="a11y.skipLink">Skip to content</a>
 
@@ -16,10 +53,14 @@
 <div class="lang-gate" id="langGate" role="dialog" aria-modal="true" aria-label="Choose your language / Pilih bahasa Anda">
   <div class="lang-gate-inner">
     <span class="lang-gate-mark" aria-hidden="true">
-      <svg viewBox="0 0 24 24" width="30" height="30">
-        <rect x="2" y="15" width="20" height="4" fill="#ff6a1a"/>
-        <rect x="4" y="10" width="16" height="4" fill="#ffffff" opacity="0.85"/>
-        <rect x="6" y="5" width="12" height="4" fill="#ffffff" opacity="0.55"/>
+      <svg viewBox="0 0 100 100" width="34" height="34">
+        <circle cx="50" cy="50" r="47" fill="url(#badgeRing)"/>
+        <circle cx="50" cy="50" r="39" fill="#ff6a1a"/>
+        <circle cx="50" cy="50" r="36" fill="url(#badgeFace)"/>
+        <rect x="26" y="59" width="48" height="8" fill="url(#layerBase)"/>
+        <rect x="32" y="46" width="36" height="8" fill="url(#layerMid)"/>
+        <rect x="38" y="33" width="24" height="8" fill="url(#layerHi)"/>
+        <circle cx="50" cy="50" r="47" fill="url(#badgeGloss)"/>
       </svg>
     </span>
     <h1 class="lang-gate-title">Choose your language<br><span class="text-orange">Pilih bahasa Anda</span></h1>
@@ -41,10 +82,14 @@
   <div class="container header-inner">
     <a href="#top" class="logo" data-i18n-aria="a11y.logoHome">
       <span class="logo-mark" aria-hidden="true">
-        <svg viewBox="0 0 24 24" width="26" height="26">
-          <rect x="2" y="15" width="20" height="4" fill="#ff6a1a"/>
-          <rect x="4" y="10" width="16" height="4" fill="#ffffff" opacity="0.85"/>
-          <rect x="6" y="5" width="12" height="4" fill="#ffffff" opacity="0.55"/>
+        <svg viewBox="0 0 100 100" width="28" height="28">
+          <circle cx="50" cy="50" r="47" fill="url(#badgeRing)"/>
+          <circle cx="50" cy="50" r="39" fill="#ff6a1a"/>
+          <circle cx="50" cy="50" r="36" fill="url(#badgeFace)"/>
+          <rect x="26" y="59" width="48" height="8" fill="url(#layerBase)"/>
+          <rect x="32" y="46" width="36" height="8" fill="url(#layerMid)"/>
+          <rect x="38" y="33" width="24" height="8" fill="url(#layerHi)"/>
+          <circle cx="50" cy="50" r="47" fill="url(#badgeGloss)"/>
         </svg>
       </span>
       <span class="logo-text">2LIFE</span>
@@ -142,10 +187,14 @@
               </div>
             </div>
             <div class="orbit-center">
-              <svg viewBox="0 0 24 24" width="24" height="24">
-                <rect x="2" y="15" width="20" height="4" fill="#ff6a1a"/>
-                <rect x="4" y="10" width="16" height="4" fill="#ffffff" opacity="0.85"/>
-                <rect x="6" y="5" width="12" height="4" fill="#ffffff" opacity="0.55"/>
+              <svg viewBox="0 0 100 100" width="38" height="38">
+                <circle cx="50" cy="50" r="47" fill="url(#badgeRing)"/>
+                <circle cx="50" cy="50" r="39" fill="#ff6a1a"/>
+                <circle cx="50" cy="50" r="36" fill="url(#badgeFace)"/>
+                <rect x="26" y="59" width="48" height="8" fill="url(#layerBase)"/>
+                <rect x="32" y="46" width="36" height="8" fill="url(#layerMid)"/>
+                <rect x="38" y="33" width="24" height="8" fill="url(#layerHi)"/>
+                <circle cx="50" cy="50" r="47" fill="url(#badgeGloss)"/>
               </svg>
             </div>
           </div>
