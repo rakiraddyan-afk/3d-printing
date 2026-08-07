@@ -44,6 +44,18 @@
       <stop offset="0%" stop-color="#ffffff" stop-opacity="0.55"/>
       <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
     </radialGradient>
+
+    <!-- Generic classic-car side silhouette used on the hero's spinning
+         coins. Deliberately brand-neutral (no manufacturer's actual
+         logo/design) - reused via <use> and flipped per coin for variety. -->
+    <symbol id="carSide" viewBox="0 0 64 34">
+      <path d="M4 24 Q4 19 9 19 L16 19 L23 10 Q25 7 29 7 L38 7 Q42 7 44 10 L50 19 L56 19 Q60 19 60 24 L60 25 Q60 27 58 27 L6 27 Q4 27 4 25 Z" fill="#e9e9ea"/>
+      <path d="M24 19 L29.5 11 Q30.7 9.5 32.5 9.5 L35.5 9.5 Q37.3 9.5 38.5 11 L44 19 Z" fill="#15161a"/>
+      <circle cx="16" cy="27" r="6.2" fill="#111214"/>
+      <circle cx="16" cy="27" r="2.6" fill="#8a8b90"/>
+      <circle cx="48" cy="27" r="6.2" fill="#111214"/>
+      <circle cx="48" cy="27" r="2.6" fill="#8a8b90"/>
+    </symbol>
   </defs>
 </svg>
 
@@ -151,37 +163,37 @@
             <div class="orbit-spin">
               <div class="orbit-item" style="--angle:0deg">
                 <div class="orbit-coin" style="--spin-dur:5.2s">
-                  <span class="coin-face coin-front">BMW</span>
+                  <span class="coin-face coin-front"><svg class="coin-car" viewBox="0 0 64 34" width="36" height="19" aria-hidden="true"><use href="#carSide"/></svg></span>
                   <span class="coin-face coin-back"></span>
                 </div>
               </div>
               <div class="orbit-item" style="--angle:60deg">
                 <div class="orbit-coin" style="--spin-dur:4.6s">
-                  <span class="coin-face coin-front">MB</span>
+                  <span class="coin-face coin-front"><svg class="coin-car" viewBox="0 0 64 34" width="36" height="19" style="transform:scaleX(-1)" aria-hidden="true"><use href="#carSide"/></svg></span>
                   <span class="coin-face coin-back"></span>
                 </div>
               </div>
               <div class="orbit-item" style="--angle:120deg">
                 <div class="orbit-coin" style="--spin-dur:5.8s">
-                  <span class="coin-face coin-front">POR</span>
+                  <span class="coin-face coin-front"><svg class="coin-car" viewBox="0 0 64 34" width="36" height="19" aria-hidden="true"><use href="#carSide"/></svg></span>
                   <span class="coin-face coin-back"></span>
                 </div>
               </div>
               <div class="orbit-item" style="--angle:180deg">
                 <div class="orbit-coin" style="--spin-dur:5.0s">
-                  <span class="coin-face coin-front">ALFA</span>
+                  <span class="coin-face coin-front"><svg class="coin-car" viewBox="0 0 64 34" width="36" height="19" style="transform:scaleX(-1)" aria-hidden="true"><use href="#carSide"/></svg></span>
                   <span class="coin-face coin-back"></span>
                 </div>
               </div>
               <div class="orbit-item" style="--angle:240deg">
                 <div class="orbit-coin" style="--spin-dur:4.4s">
-                  <span class="coin-face coin-front">SAAB</span>
+                  <span class="coin-face coin-front"><svg class="coin-car" viewBox="0 0 64 34" width="36" height="19" aria-hidden="true"><use href="#carSide"/></svg></span>
                   <span class="coin-face coin-back"></span>
                 </div>
               </div>
               <div class="orbit-item" style="--angle:300deg">
                 <div class="orbit-coin" style="--spin-dur:5.5s">
-                  <span class="coin-face coin-front">CITR</span>
+                  <span class="coin-face coin-front"><svg class="coin-car" viewBox="0 0 64 34" width="36" height="19" style="transform:scaleX(-1)" aria-hidden="true"><use href="#carSide"/></svg></span>
                   <span class="coin-face coin-back"></span>
                 </div>
               </div>
