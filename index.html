@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2LIFE | 3D Printed Parts for Classic European Cars</title>
+<meta name="description" content="2LIFE reverse-engineers and 3D prints fragile, discontinued plastic parts for classic European cars: trim clips, dashboard parts, housings and more.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230a0a0a'/%3E%3Cpath d='M8 22 L16 10 L24 22 Z' fill='none' stroke='%23ff6a1a' stroke-width='2'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<a class="skip-link" href="#main" data-i18n="a11y.skipLink">Skip to content</a>
+
+<!-- ===== LANGUAGE GATE ===== -->
+<div class="lang-gate" id="langGate" role="dialog" aria-modal="true" aria-label="Choose your language / Pilih bahasa Anda">
+  <div class="lang-gate-inner">
+    <span class="lang-gate-mark" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="30" height="30">
+        <rect x="2" y="15" width="20" height="4" fill="#ff6a1a"/>
+        <rect x="4" y="10" width="16" height="4" fill="#ffffff" opacity="0.85"/>
+        <rect x="6" y="5" width="12" height="4" fill="#ffffff" opacity="0.55"/>
+      </svg>
+    </span>
+    <h1 class="lang-gate-title">Choose your language<br><span class="text-orange">Pilih bahasa Anda</span></h1>
+    <div class="lang-gate-options">
+      <button type="button" class="lang-gate-btn" data-lang="en">
+        <span class="lang-gate-code">EN</span>
+        <span class="lang-gate-name">English</span>
+      </button>
+      <button type="button" class="lang-gate-btn" data-lang="id">
+        <span class="lang-gate-code">ID</span>
+        <span class="lang-gate-name">Bahasa Indonesia</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== HEADER ===== -->
+<header class="site-header" id="top">
+  <div class="container header-inner">
+    <a href="#top" class="logo" data-i18n-aria="a11y.logoHome">
+      <span class="logo-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="26" height="26">
+          <rect x="2" y="15" width="20" height="4" fill="#ff6a1a"/>
+          <rect x="4" y="10" width="16" height="4" fill="#ffffff" opacity="0.85"/>
+          <rect x="6" y="5" width="12" height="4" fill="#ffffff" opacity="0.55"/>
+        </svg>
+      </span>
+      <span class="logo-text">2LIFE</span>
+    </a>
+
+    <nav class="nav" id="nav">
+      <ul class="nav-list">
+        <li><a href="#services" class="nav-link" data-i18n="nav.services">Services</a></li>
+        <li><a href="#process" class="nav-link" data-i18n="nav.process">Process</a></li>
+        <li><a href="#parts" class="nav-link" data-i18n="nav.parts">Parts</a></li>
+        <li><a href="#materials" class="nav-link" data-i18n="nav.materials">Materials</a></li>
+        <li><a href="#about" class="nav-link" data-i18n="nav.about">About</a></li>
+        <li><a href="#contact" class="nav-link" data-i18n="nav.contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="header-actions">
+      <div class="lang-switch" role="group" aria-label="Language">
+        <button type="button" class="lang-switch-btn" data-lang="en" aria-pressed="true">EN</button>
+        <button type="button" class="lang-switch-btn" data-lang="id" aria-pressed="false">ID</button>
+      </div>
+      <a href="#contact" class="btn btn-primary btn-sm" data-i18n="header.cta">Get a Quote</a>
+      <button class="nav-toggle" id="navToggle" data-i18n-aria="a11y.navToggle" aria-expanded="false" aria-controls="nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-copy reveal">
+        <p class="eyebrow" data-i18n-html="hero.eyebrow">Reverse-engineered &middot; 3D printed &middot; Made to fit</p>
+        <h1 data-i18n-html="hero.headline">Broken clip. Cracked trim. <span class="text-orange">Discontinued forever.</span><br>Not anymore.</h1>
+        <p class="hero-sub" data-i18n="hero.sub">2LIFE scans, models, and 3D prints the fragile plastic parts your classic European car's manufacturer stopped making decades ago: dashboard clips, trim, housings, brackets, and more.</p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary" data-i18n="hero.cta1">Request a Part</a>
+          <a href="#process" class="btn btn-ghost" data-i18n="hero.cta2">See How It Works</a>
+        </div>
+        <ul class="hero-tags">
+          <li>Mercedes-Benz</li>
+          <li>BMW</li>
+          <li>Porsche</li>
+          <li>Alfa Romeo</li>
+          <li>Citroën</li>
+          <li>Saab</li>
+          <li data-i18n="hero.tagMore">+ more</li>
+        </ul>
+      </div>
+
+      <div class="hero-visual reveal" aria-hidden="true">
+        <div class="brand-orbit">
+          <div class="orbit-glow"></div>
+          <div class="orbit-stage">
+            <div class="orbit-ring"></div>
+            <div class="orbit-spin">
+              <div class="orbit-item" style="--angle:0deg">
+                <div class="orbit-coin" style="--spin-dur:5.2s">
+                  <span class="coin-face coin-front">BMW</span>
+                  <span class="coin-face coin-back"></span>
+                </div>
+              </div>
+              <div class="orbit-item" style="--angle:60deg">
+                <div class="orbit-coin" style="--spin-dur:4.6s">
+                  <span class="coin-face coin-front">MB</span>
+                  <span class="coin-face coin-back"></span>
+                </div>
+              </div>
+              <div class="orbit-item" style="--angle:120deg">
+                <div class="orbit-coin" style="--spin-dur:5.8s">
+                  <span class="coin-face coin-front">POR</span>
+                  <span class="coin-face coin-back"></span>
+                </div>
+              </div>
+              <div class="orbit-item" style="--angle:180deg">
+                <div class="orbit-coin" style="--spin-dur:5.0s">
+                  <span class="coin-face coin-front">ALFA</span>
+                  <span class="coin-face coin-back"></span>
+                </div>
+              </div>
+              <div class="orbit-item" style="--angle:240deg">
+                <div class="orbit-coin" style="--spin-dur:4.4s">
+                  <span class="coin-face coin-front">SAAB</span>
+                  <span class="coin-face coin-back"></span>
+                </div>
+              </div>
+              <div class="orbit-item" style="--angle:300deg">
+                <div class="orbit-coin" style="--spin-dur:5.5s">
+                  <span class="coin-face coin-front">CITR</span>
+                  <span class="coin-face coin-back"></span>
+                </div>
+              </div>
+            </div>
+            <div class="orbit-center">
+              <svg viewBox="0 0 24 24" width="24" height="24">
+                <rect x="2" y="15" width="20" height="4" fill="#ff6a1a"/>
+                <rect x="4" y="10" width="16" height="4" fill="#ffffff" opacity="0.85"/>
+                <rect x="6" y="5" width="12" height="4" fill="#ffffff" opacity="0.55"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== STATS STRIP ===== -->
+  <section class="stats" data-i18n-aria="a11y.statsLabel">
+    <div class="container stats-grid">
+      <div class="stat reveal">
+        <span class="stat-num" data-count="1200">0</span><span class="stat-suffix">+</span>
+        <span class="stat-label" data-i18n="stats.label1">Parts printed</span>
+      </div>
+      <div class="stat reveal">
+        <span class="stat-num" data-count="60">0</span><span class="stat-suffix">+</span>
+        <span class="stat-label" data-i18n="stats.label2">Models supported</span>
+      </div>
+      <div class="stat reveal">
+        <span class="stat-num" data-count="72">0</span><span class="stat-suffix">h</span>
+        <span class="stat-label" data-i18n="stats.label3">Avg. turnaround</span>
+      </div>
+      <div class="stat reveal">
+        <span class="stat-num" data-count="0" data-decimal="0.1">0</span><span class="stat-suffix">mm</span>
+        <span class="stat-label" data-i18n="stats.label4">Print tolerance</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SERVICES ===== -->
+  <section class="section" id="services">
+    <div class="container">
+      <p class="eyebrow center" data-i18n="services.eyebrow">What we do</p>
+      <h2 class="section-title center" data-i18n="services.title">From broken original to printed replacement</h2>
+      <p class="section-sub center" data-i18n="services.sub">Every part is rebuilt around your original, not a generic mold.</p>
+
+      <div class="grid grid-4">
+        <article class="card reveal">
+          <span class="card-icon">
+            <svg viewBox="0 0 24 24"><path d="M4 8V5a1 1 0 0 1 1-1h3M20 8V5a1 1 0 0 0-1-1h-3M4 16v3a1 1 0 0 0 1 1h3M20 16v3a1 1 0 0 1-1 1h-3" fill="none" stroke="#ff6a1a" stroke-width="1.8" stroke-linecap="round"/><rect x="9" y="9" width="6" height="6" fill="none" stroke="#ff6a1a" stroke-width="1.8"/></svg>
+          </span>
+          <h3 data-i18n="services.card1.title">3D Scanning</h3>
+          <p data-i18n="services.card1.body">We digitize your broken or worn part with precision structured-light scanning, capturing every curve and mounting point.</p>
+        </article>
+
+        <article class="card reveal">
+          <span class="card-icon">
+            <svg viewBox="0 0 24 24"><path d="M4 7 12 3l8 4-8 4-8-4Z" fill="none" stroke="#ff6a1a" stroke-width="1.8" stroke-linejoin="round"/><path d="M4 7v10l8 4 8-4V7" fill="none" stroke="#ff6a1a" stroke-width="1.8" stroke-linejoin="round"/><path d="M12 11v10" fill="none" stroke="#ff6a1a" stroke-width="1.8"/></svg>
+          </span>
+          <h3 data-i18n="services.card2.title">CAD Reconstruction</h3>
+          <p data-i18n="services.card2.body">Broken pieces are digitally repaired and modeled to the part's original geometry and tolerances before printing.</p>
+        </article>
+
+        <article class="card reveal">
+          <span class="card-icon">
+            <svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2" fill="none" stroke="#ff6a1a" stroke-width="1.8"/><line x1="4" y1="10" x2="20" y2="10" stroke="#ff6a1a" stroke-width="1.8"/><line x1="4" y1="14" x2="20" y2="14" stroke="#ff6a1a" stroke-width="1.8"/></svg>
+          </span>
+          <h3 data-i18n="services.card3.title">Precision Printing</h3>
+          <p data-i18n="services.card3.body">Printed layer by layer in UV-stable, impact-resistant materials matched to the part's original job under the hood or dash.</p>
+        </article>
+
+        <article class="card reveal">
+          <span class="card-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="none" stroke="#ff6a1a" stroke-width="1.8"/><path d="M9 12.5l2 2 4-4.5" fill="none" stroke="#ff6a1a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <h3 data-i18n="services.card4.title">Fit-Check &amp; Finish</h3>
+          <p data-i18n="services.card4.body">Each part is sanded, dyed to match, and dry-fit tested against reference drawings before it ships to you.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROCESS ===== -->
+  <section class="section section-alt" id="process">
+    <div class="container">
+      <p class="eyebrow center" data-i18n="process.eyebrow">The process</p>
+      <h2 class="section-title center" data-i18n="process.title">Four steps from cracked to complete</h2>
+
+      <div class="steps">
+        <div class="step reveal">
+          <span class="step-num">01</span>
+          <h3 data-i18n="process.step1.title">Send us the part</h3>
+          <p data-i18n="process.step1.body">Mail your original (even in pieces) or send clear photos with measurements and your car's make, model, and year.</p>
+        </div>
+        <div class="step reveal">
+          <span class="step-num">02</span>
+          <h3 data-i18n="process.step2.title">We model it</h3>
+          <p data-i18n="process.step2.body">Our team scans and reconstructs the part in CAD, restoring worn or missing geometry to spec.</p>
+        </div>
+        <div class="step reveal">
+          <span class="step-num">03</span>
+          <h3 data-i18n="process.step3.title">We print &amp; finish</h3>
+          <p data-i18n="process.step3.body">Printed in a durable material suited to the part, then cleaned, finished, and quality-checked by hand.</p>
+        </div>
+        <div class="step reveal">
+          <span class="step-num">04</span>
+          <h3 data-i18n="process.step4.title">Delivered to your door</h3>
+          <p data-i18n="process.step4.body">Your new part ships worldwide, ready to install, with the digital file kept on file for reorders.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PARTS GALLERY ===== -->
+  <section class="section" id="parts">
+    <div class="container">
+      <p class="eyebrow center" data-i18n="parts.eyebrow">Commonly restored</p>
+      <h2 class="section-title center" data-i18n="parts.title">Small parts, big headaches: solved</h2>
+      <p class="section-sub center" data-i18n="parts.sub">If it's brittle, discontinued, or priced like gold by a dealer, we can probably print it.</p>
+
+      <div class="grid grid-6 parts-grid">
+        <div class="part-tile reveal"><span class="part-icon">⬡</span><span data-i18n="parts.tile1">Dashboard clips</span></div>
+        <div class="part-tile reveal"><span class="part-icon">▭</span><span data-i18n="parts.tile2">Trim &amp; mouldings</span></div>
+        <div class="part-tile reveal"><span class="part-icon">◈</span><span data-i18n="parts.tile3">Tail-light housings</span></div>
+        <div class="part-tile reveal"><span class="part-icon">⚙</span><span data-i18n="parts.tile4">Interior brackets</span></div>
+        <div class="part-tile reveal"><span class="part-icon">◎</span><span data-i18n="parts.tile5">Knobs &amp; levers</span></div>
+        <div class="part-tile reveal"><span class="part-icon">▤</span><span data-i18n="parts.tile6">Grille components</span></div>
+        <div class="part-tile reveal"><span class="part-icon">⌗</span><span data-i18n="parts.tile7">HVAC vents</span></div>
+        <div class="part-tile reveal"><span class="part-icon">⬢</span><span data-i18n="parts.tile8">Switch surrounds</span></div>
+        <div class="part-tile reveal"><span class="part-icon">▥</span><span data-i18n="parts.tile9">Door handle parts</span></div>
+        <div class="part-tile reveal"><span class="part-icon">◫</span><span data-i18n="parts.tile10">Console inserts</span></div>
+        <div class="part-tile reveal"><span class="part-icon">⬣</span><span data-i18n="parts.tile11">Badge mounts</span></div>
+        <div class="part-tile reveal"><span class="part-icon">✚</span><span data-i18n="parts.tile12">Custom / other</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MATERIALS ===== -->
+  <section class="section section-alt" id="materials">
+    <div class="container">
+      <p class="eyebrow center" data-i18n="materials.eyebrow">Materials</p>
+      <h2 class="section-title center" data-i18n="materials.title">Matched to the job, not one-size-fits-all</h2>
+
+      <div class="grid grid-3">
+        <article class="material-card reveal">
+          <h3 data-i18n="materials.card1.title">ASA / ABS</h3>
+          <span class="tag" data-i18n="materials.card1.tag">UV &amp; heat resistant</span>
+          <p data-i18n="materials.card1.body">Our default for exterior and dashboard parts, holding color and shape under sun and engine-bay heat.</p>
+        </article>
+        <article class="material-card reveal">
+          <h3 data-i18n="materials.card2.title">Reinforced Nylon</h3>
+          <span class="tag" data-i18n="materials.card2.tag">High impact strength</span>
+          <p data-i18n="materials.card2.body">Used for brackets and clips that take repeated stress or vibration, tougher than the factory original.</p>
+        </article>
+        <article class="material-card reveal">
+          <h3 data-i18n="materials.card3.title">Resin (SLA)</h3>
+          <span class="tag" data-i18n="materials.card3.tag">Fine detail finish</span>
+          <p data-i18n="materials.card3.body">For badges, switch surrounds, and trim where sharp edges and a smooth, paint-ready surface matter most.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section class="section about" id="about">
+    <div class="container about-inner">
+      <div class="reveal">
+        <p class="eyebrow" data-i18n="about.eyebrow">Why 2LIFE</p>
+        <h2 class="section-title" data-i18n="about.title">Keeping old European iron on the road</h2>
+        <p data-i18n="about.p1">Parts bins for cars built before the 2000s are drying up. Dealers stop stocking, suppliers stop tooling, and the plastic that's left turns brittle with age. We built 2LIFE to solve exactly that problem: a small-batch, print-on-demand parts shop for the pieces nobody else will make anymore.</p>
+        <p data-i18n="about.p2">Every job starts with your part, not a catalog, so what you get back fits the way the original did, panel gaps and all.</p>
+      </div>
+      <ul class="about-points reveal">
+        <li><strong data-i18n="about.point1.strong">No minimum order.</strong> <span data-i18n="about.point1.text">We print a single clip as readily as a full trim set.</span></li>
+        <li><strong data-i18n="about.point2.strong">Files kept on record.</strong> <span data-i18n="about.point2.text">Reorder a part in seconds if it breaks again.</span></li>
+        <li><strong data-i18n="about.point3.strong">Worldwide shipping.</strong> <span data-i18n="about.point3.text">Small, light parts ship affordably almost anywhere.</span></li>
+        <li><strong data-i18n="about.point4.strong">Owner &amp; enthusiast run.</strong> <span data-i18n="about.point4.text">We restore our own classics too.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===== TESTIMONIALS ===== -->
+  <section class="section section-alt" id="testimonials">
+    <div class="container">
+      <p class="eyebrow center" data-i18n="testimonials.eyebrow">From the garage</p>
+      <h2 class="section-title center" data-i18n="testimonials.title">Owners who found their unfindable part</h2>
+
+      <div class="grid grid-3">
+        <blockquote class="quote-card reveal">
+          <p data-i18n="testimonials.quote1">"Tracked down a dash vent clip for my W123 that's been NLA for fifteen years. Fit first try."</p>
+          <cite>R. Hendriks, Mercedes-Benz W123</cite>
+        </blockquote>
+        <blockquote class="quote-card reveal">
+          <p data-i18n="testimonials.quote2">"Sent them a bag of shattered trim clips from my 2002tii. Got back a full set, stronger than stock."</p>
+          <cite>M. Costa, BMW 2002tii</cite>
+        </blockquote>
+        <blockquote class="quote-card reveal">
+          <p data-i18n="testimonials.quote3">"The tail light housing quote from the dealer was absurd. 2LIFE printed one for a fraction of it."</p>
+          <cite>S. Dubois, Citroën DS</cite>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT / QUOTE ===== -->
+  <section class="section contact" id="contact">
+    <div class="container contact-inner">
+      <div class="reveal">
+        <p class="eyebrow" data-i18n="contact.eyebrow">Get in touch</p>
+        <h2 class="section-title" data-i18n="contact.title">Tell us about your part</h2>
+        <p class="section-sub" data-i18n="contact.sub">Include your car's make, model and year, and a photo or two if you have them. We'll reply with a quote and turnaround time, usually within one business day.</p>
+
+        <ul class="contact-info">
+          <li>
+            <svg viewBox="0 0 24 24" width="18" height="18"><path d="M4 5h16v14H4z" fill="none" stroke="#ff6a1a" stroke-width="1.6"/><path d="M4 6l8 7 8-7" fill="none" stroke="#ff6a1a" stroke-width="1.6"/></svg>
+            <span>2lifeparts@gmail.com</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" width="18" height="18"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2C10.5 21 3 13.5 3 6a2 2 0 0 1 2-2Z" fill="none" stroke="#ff6a1a" stroke-width="1.6" stroke-linejoin="round"/></svg>
+            <span>+62 816-1555-5777</span>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" width="18" height="18"><path d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21Z" fill="none" stroke="#ff6a1a" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="9.5" r="2.3" fill="none" stroke="#ff6a1a" stroke-width="1.6"/></svg>
+            <span data-i18n="contact.shipping">Ships worldwide, based in Jakarta, Indonesia</span>
+          </li>
+        </ul>
+      </div>
+
+      <form class="quote-form reveal" id="quoteForm" novalidate>
+        <div class="form-row">
+          <div class="field">
+            <label for="name" data-i18n="form.name">Name</label>
+            <input type="text" id="name" name="name" required autocomplete="name">
+            <span class="field-error" id="err-name"></span>
+          </div>
+          <div class="field">
+            <label for="email" data-i18n="form.email">Email</label>
+            <input type="email" id="email" name="email" required autocomplete="email">
+            <span class="field-error" id="err-email"></span>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="field">
+            <label for="carModel" data-i18n="form.carModel">Car make / model / year</label>
+            <input type="text" id="carModel" name="carModel" data-i18n-placeholder="form.carModelPlaceholder" placeholder="e.g. Porsche 911 (1986)" required>
+            <span class="field-error" id="err-carModel"></span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="details" data-i18n="form.details">Describe the part</label>
+          <textarea id="details" name="details" rows="4" data-i18n-placeholder="form.detailsPlaceholder" placeholder="Where it's located, how it broke, any measurements you have..." required></textarea>
+          <span class="field-error" id="err-details"></span>
+        </div>
+
+        <div class="field">
+          <label for="photo" data-i18n="form.photo">Photo (optional)</label>
+          <input type="file" id="photo" name="photo" accept="image/*">
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block" data-i18n="form.submit">Send Request</button>
+        <p class="form-note" id="formNote" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <span class="logo-text">2LIFE</span>
+      <p data-i18n="footer.tagline">3D printed parts for classic European cars.</p>
+    </div>
+
+    <nav class="footer-nav" aria-label="Footer">
+      <a href="#services" data-i18n="nav.services">Services</a>
+      <a href="#process" data-i18n="nav.process">Process</a>
+      <a href="#parts" data-i18n="nav.parts">Parts</a>
+      <a href="#materials" data-i18n="nav.materials">Materials</a>
+      <a href="#about" data-i18n="nav.about">About</a>
+      <a href="#contact" data-i18n="nav.contact">Contact</a>
+    </nav>
+
+    <p class="footer-copy">&copy; <span id="year"></span> 2LIFE. <span data-i18n="footer.copy">All rights reserved. Manufacturer names are used to describe compatibility only.</span></p>
+  </div>
+</footer>
+
+<script src="js/i18n.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>
