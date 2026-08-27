@@ -120,6 +120,8 @@
   /* ---------- Quote form validation ---------- */
   var form = document.getElementById("quoteForm");
   var formNote = document.getElementById("formNote");
+  var submitBtn = form ? form.querySelector('button[type="submit"]') : null;
+  var WEB3FORMS_ENDPOINT = "https://api.web3forms.com/submit";
 
   var validators = {
     name: function (value) {
@@ -131,6 +133,13 @@
     },
     carModel: function (value) {
       return value.trim().length >= 2 ? "" : window.i18n.t("validation.carModel");
+    },
+    phone: function (value) {
+      var digits = value.replace(/\D/g, "");
+      return digits.length >= 8 ? "" : window.i18n.t("validation.phone");
+    },
+    address: function (value) {
+      return value.trim().length >= 10 ? "" : window.i18n.t("validation.address");
     },
     details: function (value) {
       return value.trim().length >= 10 ? "" : window.i18n.t("validation.details");
@@ -159,11 +168,54 @@
       }
 
       formNote.style.color = "";
-      formNote.textContent = window.i18n.t("form.success");
-      form.reset();
-      form.querySelectorAll(".field").forEach(function (field) {
-        field.classList.remove("invalid");
-      });
+      formNote.textContent = "";
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = window.i18n.t("form.sending");
+      }
+
+      fetch(WEB3FORMS_ENDPOINT, {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: new FormData(form)
+      })
+        .then(function (response) {
+          return response.text().then(function (raw) {
+            var data = null;
+            try {
+              data = JSON.parse(raw);
+            } catch (parseError) {
+              /* non-JSON response (e.g. an upstream error page) — data stays null */
+            }
+            return { ok: response.ok, status: response.status, data: data, raw: raw };
+          });
+        })
+        .then(function (result) {
+          if (result.ok && result.data && result.data.success) {
+            formNote.style.color = "";
+            formNote.textContent = window.i18n.t("form.success");
+            form.reset();
+            form.querySelectorAll(".field").forEach(function (field) {
+              field.classList.remove("invalid");
+            });
+          } else {
+            window.console.error("Form submission failed", result.status, result.raw);
+            formNote.style.color = "#ff8080";
+            formNote.textContent =
+              (result.data && result.data.message) || window.i18n.t("form.submitError");
+          }
+        })
+        .catch(function (err) {
+          window.console.error("Form submission network error", err);
+          formNote.style.color = "#ff8080";
+          formNote.textContent = window.i18n.t("form.submitError");
+        })
+        .finally(function () {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.textContent = window.i18n.t("form.submit");
+          }
+        });
     });
 
     Object.keys(validators).forEach(function (fieldName) {

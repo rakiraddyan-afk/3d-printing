@@ -272,10 +272,9 @@ html.lang-gate-open, html.lang-gate-open body{ overflow:hidden; height:100%; }
   overflow:hidden;
 }
 .hero-inner{
-  display:grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap:56px;
-  align-items:center;
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
 }
 .eyebrow{
   color: var(--orange);
@@ -294,10 +293,12 @@ html.lang-gate-open, html.lang-gate-open body{ overflow:hidden; height:100%; }
   color: var(--grey);
   font-size:1.05rem;
   max-width: 46ch;
+  margin-left: auto;
+  margin-right: auto;
 }
-.hero-actions{ display:flex; gap:14px; flex-wrap:wrap; margin: 26px 0 30px; }
+.hero-actions{ display:flex; gap:14px; flex-wrap:wrap; justify-content:center; margin: 26px 0 30px; }
 .hero-tags{
-  display:flex; flex-wrap:wrap; gap:10px;
+  display:flex; flex-wrap:wrap; justify-content:center; gap:10px;
 }
 .hero-tags li{
   color: var(--light-grey);
@@ -306,99 +307,6 @@ html.lang-gate-open, html.lang-gate-open body{ overflow:hidden; height:100%; }
   padding:6px 12px;
   border:1px solid rgba(255,255,255,0.15);
   border-radius:999px;
-}
-
-.hero-visual{ display:flex; justify-content:center; width:100%; }
-
-/* Brand orbit: a 45deg-tilted 3D ring of coins revolving around the center
-   mark. Each coin also spins on its own axis (front/back faces) so it reads
-   as a genuine tumbling 3D badge rather than a flat card that vanishes
-   edge-on. The center hub counter-tilts to stand upright, facing the viewer. */
-.brand-orbit{
-  position:relative;
-  width:100%;
-  max-width:340px;
-  aspect-ratio: 1 / 1;
-  --orbit-r: 128px;
-  perspective: 900px;
-}
-.orbit-glow{
-  position:absolute; inset:-20%;
-  background: radial-gradient(circle at 50% 45%, rgba(255,106,26,0.32), transparent 65%);
-  filter: blur(14px);
-}
-.orbit-stage{
-  position:absolute; inset:0;
-  transform-style: preserve-3d;
-  transform: rotateX(45deg);
-}
-.orbit-ring{
-  position:absolute; inset:12%;
-  border:1px dashed rgba(255,106,26,0.3);
-  border-radius:50%;
-  transform-style: preserve-3d;
-}
-.orbit-center{
-  position:absolute; top:50%; left:50%;
-  transform: translate(-50%,-50%) translateZ(30px) rotateX(-45deg);
-  width:60px; height:60px;
-  border-radius:50%;
-  background: linear-gradient(160deg, var(--dark-grey), var(--black));
-  border:1px solid rgba(255,255,255,0.15);
-  display:flex; align-items:center; justify-content:center;
-  box-shadow: var(--shadow);
-  z-index:2;
-}
-.orbit-spin{
-  position:absolute; inset:0;
-  transform-style: preserve-3d;
-  animation: orbit-revolve 22s linear infinite;
-}
-@keyframes orbit-revolve{ from{ transform: rotateY(0deg); } to{ transform: rotateY(360deg); } }
-.orbit-item{
-  position:absolute; top:50%; left:50%;
-  transform-style: preserve-3d;
-  transform: translate(-50%,-50%) rotateY(var(--angle)) translateZ(var(--orbit-r));
-}
-.orbit-coin{
-  position:relative;
-  width:58px; height:58px;
-  transform-style: preserve-3d;
-  animation: coin-spin var(--spin-dur, 5s) linear infinite;
-}
-@keyframes coin-spin{ from{ transform: rotateY(0deg); } to{ transform: rotateY(360deg); } }
-
-/* Badge face built from stacked backgrounds so it reads as a metal emblem:
-   a chrome bezel ring, a thin orange pinstripe seam, an enamel-dark center,
-   and a glossy highlight painted on top — no extra DOM needed per face. */
-.coin-face{
-  position:absolute; inset:0;
-  display:flex; align-items:center; justify-content:center;
-  border-radius:50%;
-  backface-visibility: hidden;
-  color:#fff;
-  font-size:0.6rem;
-  font-weight:800;
-  letter-spacing:0.02em;
-  text-shadow: 0 1px 1px rgba(0,0,0,0.7), 0 -1px 0 rgba(255,255,255,0.18);
-  box-shadow:
-    inset 0 0 0 1px rgba(0,0,0,0.5),
-    inset 0 1px 2px rgba(255,255,255,0.4),
-    0 5px 14px rgba(0,0,0,0.5);
-}
-.coin-front{
-  background:
-    radial-gradient(circle at 32% 26%, rgba(255,255,255,0.55), transparent 42%),
-    radial-gradient(circle, var(--near-black) 0 76%, var(--orange) 76% 81%, transparent 82%),
-    conic-gradient(from 210deg, #fdfdfe, #cfd3d8, #6c7075, #26282b, #6c7075, #cfd3d8, #fdfdfe);
-  transform: translateZ(2px);
-}
-.coin-back{
-  background:
-    radial-gradient(circle at 32% 26%, rgba(255,255,255,0.5), transparent 42%),
-    radial-gradient(circle, var(--orange-dark) 0 76%, #fff 76% 81%, transparent 82%),
-    conic-gradient(from 210deg, #fdfdfe, #cfd3d8, #6c7075, #26282b, #6c7075, #cfd3d8, #fdfdfe);
-  transform: rotateY(180deg) translateZ(2px);
 }
 
 /* ============ Stats ============ */
@@ -582,6 +490,7 @@ html.lang-gate-open, html.lang-gate-open body{ overflow:hidden; height:100%; }
   color: var(--light-grey);
   font-size:0.94rem;
 }
+.contact-info a:hover{ color: var(--orange); }
 
 .quote-form{
   background: var(--near-black);
@@ -589,6 +498,7 @@ html.lang-gate-open, html.lang-gate-open body{ overflow:hidden; height:100%; }
   border-radius: var(--radius);
   padding:28px;
 }
+.hp-field{ display:none; }
 .form-row{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
 .field{ margin-bottom:16px; }
 .field label{
@@ -614,7 +524,6 @@ html.lang-gate-open, html.lang-gate-open body{ overflow:hidden; height:100%; }
   outline:none;
   border-color: var(--orange);
 }
-.field input[type="file"]{ padding:8px; }
 .field.invalid input, .field.invalid textarea{ border-color:#ff4d4d; }
 .field-error{
   display:block;
@@ -623,6 +532,14 @@ html.lang-gate-open, html.lang-gate-open body{ overflow:hidden; height:100%; }
   color:#ff8080;
   margin-top:4px;
 }
+.form-hint{
+  font-size:0.82rem;
+  color: var(--grey);
+  margin: -4px 0 20px;
+  line-height:1.5;
+}
+.form-hint a{ color: var(--orange-light); text-decoration:underline; }
+.form-hint a:hover{ color: var(--orange); }
 .form-note{
   min-height:20px;
   font-size:0.86rem;
@@ -660,9 +577,6 @@ html.lang-gate-open, html.lang-gate-open body{ overflow:hidden; height:100%; }
   .grid-6{ grid-template-columns: repeat(3, 1fr); }
   .steps{ grid-template-columns: repeat(2, 1fr); row-gap:36px; }
   .steps::before{ display:none; }
-  .hero-inner{ grid-template-columns:1fr; }
-  .hero-visual{ order:-1; max-width:280px; margin:0 auto 12px; }
-  .brand-orbit{ --orbit-r: 100px; }
   .about-inner, .contact-inner{ grid-template-columns:1fr; }
 }
 

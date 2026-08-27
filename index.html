@@ -97,60 +97,6 @@
           <li data-i18n="hero.tagMore">+ more</li>
         </ul>
       </div>
-
-      <div class="hero-visual reveal" aria-hidden="true">
-        <div class="brand-orbit">
-          <div class="orbit-glow"></div>
-          <div class="orbit-stage">
-            <div class="orbit-ring"></div>
-            <div class="orbit-spin">
-              <div class="orbit-item" style="--angle:0deg">
-                <div class="orbit-coin" style="--spin-dur:5.2s">
-                  <span class="coin-face coin-front">BMW</span>
-                  <span class="coin-face coin-back"></span>
-                </div>
-              </div>
-              <div class="orbit-item" style="--angle:60deg">
-                <div class="orbit-coin" style="--spin-dur:4.6s">
-                  <span class="coin-face coin-front">MB</span>
-                  <span class="coin-face coin-back"></span>
-                </div>
-              </div>
-              <div class="orbit-item" style="--angle:120deg">
-                <div class="orbit-coin" style="--spin-dur:5.8s">
-                  <span class="coin-face coin-front">POR</span>
-                  <span class="coin-face coin-back"></span>
-                </div>
-              </div>
-              <div class="orbit-item" style="--angle:180deg">
-                <div class="orbit-coin" style="--spin-dur:5.0s">
-                  <span class="coin-face coin-front">ALFA</span>
-                  <span class="coin-face coin-back"></span>
-                </div>
-              </div>
-              <div class="orbit-item" style="--angle:240deg">
-                <div class="orbit-coin" style="--spin-dur:4.4s">
-                  <span class="coin-face coin-front">SAAB</span>
-                  <span class="coin-face coin-back"></span>
-                </div>
-              </div>
-              <div class="orbit-item" style="--angle:300deg">
-                <div class="orbit-coin" style="--spin-dur:5.5s">
-                  <span class="coin-face coin-front">CITR</span>
-                  <span class="coin-face coin-back"></span>
-                </div>
-              </div>
-            </div>
-            <div class="orbit-center">
-              <svg viewBox="0 0 24 24" width="24" height="24">
-                <rect x="2" y="15" width="20" height="4" fill="#ff6a1a"/>
-                <rect x="4" y="10" width="16" height="4" fill="#ffffff" opacity="0.85"/>
-                <rect x="6" y="5" width="12" height="4" fill="#ffffff" opacity="0.55"/>
-              </svg>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -347,16 +293,16 @@
       <div class="reveal">
         <p class="eyebrow" data-i18n="contact.eyebrow">Get in touch</p>
         <h2 class="section-title" data-i18n="contact.title">Tell us about your part</h2>
-        <p class="section-sub" data-i18n="contact.sub">Include your car's make, model and year, and a photo or two if you have them. We'll reply with a quote and turnaround time, usually within one business day.</p>
+        <p class="section-sub" data-i18n="contact.sub">Include your car's make, model and year, and your shipping address. We'll reply with a quote and turnaround time, usually within one business day.</p>
 
         <ul class="contact-info">
           <li>
             <svg viewBox="0 0 24 24" width="18" height="18"><path d="M4 5h16v14H4z" fill="none" stroke="#ff6a1a" stroke-width="1.6"/><path d="M4 6l8 7 8-7" fill="none" stroke="#ff6a1a" stroke-width="1.6"/></svg>
-            <span>2lifeparts@gmail.com</span>
+            <a href="mailto:2lifeparts@gmail.com">2lifeparts@gmail.com</a>
           </li>
           <li>
             <svg viewBox="0 0 24 24" width="18" height="18"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2C10.5 21 3 13.5 3 6a2 2 0 0 1 2-2Z" fill="none" stroke="#ff6a1a" stroke-width="1.6" stroke-linejoin="round"/></svg>
-            <span>+62 816-1555-5777</span>
+            <a href="tel:+6281615555777">+62 816-1555-5777</a>
           </li>
           <li>
             <svg viewBox="0 0 24 24" width="18" height="18"><path d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21Z" fill="none" stroke="#ff6a1a" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="9.5" r="2.3" fill="none" stroke="#ff6a1a" stroke-width="1.6"/></svg>
@@ -366,6 +312,9 @@
       </div>
 
       <form class="quote-form reveal" id="quoteForm" novalidate>
+        <input type="hidden" name="access_key" value="08001b74-d6d9-4e71-8bfe-abc5bf38d771">
+        <input type="hidden" name="subject" value="New Part Request from 2LIFE website">
+        <input type="checkbox" name="botcheck" class="hp-field" tabindex="-1" autocomplete="off">
         <div class="form-row">
           <div class="field">
             <label for="name" data-i18n="form.name">Name</label>
@@ -385,6 +334,17 @@
             <input type="text" id="carModel" name="carModel" data-i18n-placeholder="form.carModelPlaceholder" placeholder="e.g. Porsche 911 (1986)" required>
             <span class="field-error" id="err-carModel"></span>
           </div>
+          <div class="field">
+            <label for="phone" data-i18n="form.phone">Phone number</label>
+            <input type="tel" id="phone" name="phone" data-i18n-placeholder="form.phonePlaceholder" placeholder="e.g. 0812-3456-7890" autocomplete="tel" required>
+            <span class="field-error" id="err-phone"></span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="address" data-i18n="form.address">Shipping address</label>
+          <textarea id="address" name="address" rows="3" data-i18n-placeholder="form.addressPlaceholder" placeholder="Street, city, postal code, country" required></textarea>
+          <span class="field-error" id="err-address"></span>
         </div>
 
         <div class="field">
@@ -393,10 +353,7 @@
           <span class="field-error" id="err-details"></span>
         </div>
 
-        <div class="field">
-          <label for="photo" data-i18n="form.photo">Photo (optional)</label>
-          <input type="file" id="photo" name="photo" accept="image/*">
-        </div>
+        <p class="form-hint" data-i18n-html="form.photoHint">Need to send photos or videos? This form can't accept attachments yet, so email them to <a href="mailto:2lifeparts@gmail.com">2lifeparts@gmail.com</a> or message us at <a href="tel:+6281615555777">+62 816-1555-5777</a> directly.</p>
 
         <button type="submit" class="btn btn-primary btn-block" data-i18n="form.submit">Send Request</button>
         <p class="form-note" id="formNote" role="status" aria-live="polite"></p>
