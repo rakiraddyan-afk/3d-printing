@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-page="home">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -39,7 +39,7 @@
 <!-- ===== HEADER ===== -->
 <header class="site-header" id="top">
   <div class="container header-inner">
-    <a href="#top" class="logo" data-i18n-aria="a11y.logoHome">
+    <a href="index.html" class="logo" data-i18n-aria="a11y.logoHome">
       <span class="logo-mark" aria-hidden="true">
         <svg viewBox="0 0 24 24" width="26" height="26">
           <rect x="2" y="15" width="20" height="4" fill="#ff6a1a"/>
@@ -52,12 +52,11 @@
 
     <nav class="nav" id="nav">
       <ul class="nav-list">
-        <li><a href="#automotive" class="nav-link" data-i18n="nav.automotive">Automotive</a></li>
-        <li><a href="#sports" class="nav-link" data-i18n="nav.sports">Sports</a></li>
-        <li><a href="#process" class="nav-link" data-i18n="nav.howItWorks">How It Works</a></li>
-        <li><a href="#about" class="nav-link" data-i18n="nav.about">About</a></li>
-        <li><a href="#support" class="nav-link" data-i18n="nav.support">Support</a></li>
-        <li><a href="#contact" class="nav-link" data-i18n="nav.contact">Contact</a></li>
+        <li><a href="index.html" class="nav-link" data-page="home" data-i18n="nav.home">Home</a></li>
+        <li><a href="automotive.html" class="nav-link" data-page="automotive" data-i18n="nav.automotive">Automotive</a></li>
+        <li><a href="sports.html" class="nav-link" data-page="sports" data-i18n="nav.sports">Sports</a></li>
+        <li><a href="support.html" class="nav-link" data-page="support" data-i18n="nav.support">Support</a></li>
+        <li><a href="index.html#about" class="nav-link" data-page="about" data-i18n="nav.about">About</a></li>
       </ul>
     </nav>
 
@@ -66,7 +65,7 @@
         <button type="button" class="lang-switch-btn" data-lang="en" aria-pressed="true">EN</button>
         <button type="button" class="lang-switch-btn" data-lang="id" aria-pressed="false">ID</button>
       </div>
-      <a href="#contact" class="btn btn-primary btn-sm" data-i18n="header.cta">Get a Quote</a>
+      <a href="quote.html" class="btn btn-primary btn-sm" data-page="quote" data-i18n="header.cta">Get a Quote</a>
     </div>
   </div>
 </header>
@@ -81,8 +80,8 @@
         <h1 data-i18n-html="hero.headline">Broken clip. Cracked trim. <span class="text-orange">Discontinued forever.</span><br>Not anymore.</h1>
         <p class="hero-sub" data-i18n="hero.sub">2LIFE scans, models, and 3D prints the fragile plastic parts your classic European car's manufacturer stopped making decades ago: dashboard clips, trim, housings, brackets, and more.</p>
         <div class="hero-actions">
-          <a href="#automotive" class="btn btn-primary" data-i18n="hero.cta1">Automotive Parts</a>
-          <a href="#sports" class="btn btn-ghost" data-i18n="hero.cta2">Padel Accessories</a>
+          <a href="automotive.html" class="btn btn-primary" data-i18n="hero.cta1">Automotive Parts</a>
+          <a href="sports.html" class="btn btn-ghost" data-i18n="hero.cta2">Padel Accessories</a>
         </div>
         <ul class="hero-tags">
           <li>Mercedes-Benz</li>
@@ -122,151 +121,18 @@
   <!-- ===== DIVISIONS ===== -->
   <section class="divisions">
     <div class="container divisions-grid">
-      <a href="#automotive" class="division-card reveal">
+      <a href="automotive.html" class="division-card reveal">
         <span class="division-icon"><svg viewBox="0 0 24 24"><path d="M3 15l2-5.5A2 2 0 0 1 6.9 8h10.2a2 2 0 0 1 1.9 1.5L21 15v3a1 1 0 0 1-1 1h-1.5M3 15v3a1 1 0 0 0 1 1h1.5M3 15h18" fill="none" stroke="#ff6a1a" stroke-width="1.8" stroke-linejoin="round"/><circle cx="7.5" cy="18.5" r="1.8" fill="none" stroke="#ff6a1a" stroke-width="1.8"/><circle cx="16.5" cy="18.5" r="1.8" fill="none" stroke="#ff6a1a" stroke-width="1.8"/></svg></span>
         <span class="division-label" data-i18n="divisions.auto.label">Automotive</span>
         <span class="division-text" data-i18n="divisions.auto.text">Discontinued interior and trim parts for classic cars, rebuilt from your original.</span>
         <span class="division-go" data-i18n="divisions.go">Explore →</span>
       </a>
-      <a href="#sports" class="division-card reveal">
+      <a href="sports.html" class="division-card reveal">
         <span class="division-icon"><svg viewBox="0 0 24 24"><ellipse cx="10" cy="9" rx="6" ry="6.5" fill="none" stroke="#ff6a1a" stroke-width="1.8"/><path d="M14 13.5l6 6.5" fill="none" stroke="#ff6a1a" stroke-width="2.4" stroke-linecap="round"/><circle cx="8" cy="7.5" r="0.9" fill="#ff6a1a"/><circle cx="11.5" cy="7.5" r="0.9" fill="#ff6a1a"/><circle cx="8" cy="11" r="0.9" fill="#ff6a1a"/><circle cx="11.5" cy="11" r="0.9" fill="#ff6a1a"/></svg></span>
         <span class="division-label" data-i18n="divisions.sports.label">Sports</span>
         <span class="division-text" data-i18n="divisions.sports.text">Padel racket holders, court accessories and custom-branded pieces for clubs.</span>
         <span class="division-go" data-i18n="divisions.go">Explore →</span>
       </a>
-    </div>
-  </section>
-
-  <!-- ===== AUTOMOTIVE DIVISION ===== -->
-  <section class="division-head" id="automotive">
-    <div class="container">
-      <p class="division-kicker" data-i18n="divisions.auto.kicker">Division 01</p>
-      <h2 class="division-title" data-i18n="divisions.auto.label">Automotive</h2>
-      <p class="division-sub" data-i18n="divisions.auto.sub">Reverse-engineered replacement parts for classic European cars.</p>
-    </div>
-  </section>
-
-  <!-- ===== SERVICES ===== -->
-  <section class="section" id="services">
-    <div class="container">
-      <p class="eyebrow center" data-i18n="services.eyebrow">What we do</p>
-      <h2 class="section-title center" data-i18n="services.title">From broken original to printed replacement</h2>
-      <p class="section-sub center" data-i18n="services.sub">Every part is rebuilt around your original, not a generic mold.</p>
-
-      <div class="grid grid-4">
-        <article class="card reveal">
-          <span class="card-icon">
-            <svg viewBox="0 0 24 24"><path d="M4 8V5a1 1 0 0 1 1-1h3M20 8V5a1 1 0 0 0-1-1h-3M4 16v3a1 1 0 0 0 1 1h3M20 16v3a1 1 0 0 1-1 1h-3" fill="none" stroke="#ff6a1a" stroke-width="1.8" stroke-linecap="round"/><rect x="9" y="9" width="6" height="6" fill="none" stroke="#ff6a1a" stroke-width="1.8"/></svg>
-          </span>
-          <h3 data-i18n="services.card1.title">3D Scanning</h3>
-          <p data-i18n="services.card1.body">We digitize your broken or worn part with precision structured-light scanning, capturing every curve and mounting point.</p>
-        </article>
-
-        <article class="card reveal">
-          <span class="card-icon">
-            <svg viewBox="0 0 24 24"><path d="M4 7 12 3l8 4-8 4-8-4Z" fill="none" stroke="#ff6a1a" stroke-width="1.8" stroke-linejoin="round"/><path d="M4 7v10l8 4 8-4V7" fill="none" stroke="#ff6a1a" stroke-width="1.8" stroke-linejoin="round"/><path d="M12 11v10" fill="none" stroke="#ff6a1a" stroke-width="1.8"/></svg>
-          </span>
-          <h3 data-i18n="services.card2.title">CAD Reconstruction</h3>
-          <p data-i18n="services.card2.body">Broken pieces are digitally repaired and modeled to the part's original geometry and tolerances before printing.</p>
-        </article>
-
-        <article class="card reveal">
-          <span class="card-icon">
-            <svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2" fill="none" stroke="#ff6a1a" stroke-width="1.8"/><line x1="4" y1="10" x2="20" y2="10" stroke="#ff6a1a" stroke-width="1.8"/><line x1="4" y1="14" x2="20" y2="14" stroke="#ff6a1a" stroke-width="1.8"/></svg>
-          </span>
-          <h3 data-i18n="services.card3.title">Precision Printing</h3>
-          <p data-i18n="services.card3.body">Printed layer by layer in UV-stable, impact-resistant materials matched to the part's original job under the hood or dash.</p>
-        </article>
-
-        <article class="card reveal">
-          <span class="card-icon">
-            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="none" stroke="#ff6a1a" stroke-width="1.8"/><path d="M9 12.5l2 2 4-4.5" fill="none" stroke="#ff6a1a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </span>
-          <h3 data-i18n="services.card4.title">Fit-Check &amp; Finish</h3>
-          <p data-i18n="services.card4.body">Each part is sanded, dyed to match, and dry-fit tested against reference drawings before it ships to you.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== PROCESS ===== -->
-  <section class="section section-alt" id="process">
-    <div class="container">
-      <p class="eyebrow center" data-i18n="process.eyebrow">The process</p>
-      <h2 class="section-title center" data-i18n="process.title">Four steps from cracked to complete</h2>
-
-      <div class="steps">
-        <div class="step reveal">
-          <span class="step-num">01</span>
-          <h3 data-i18n="process.step1.title">Send us the part</h3>
-          <p data-i18n="process.step1.body">Mail your original (even in pieces) or send clear photos with measurements and your car's make, model, and year.</p>
-        </div>
-        <div class="step reveal">
-          <span class="step-num">02</span>
-          <h3 data-i18n="process.step2.title">We model it</h3>
-          <p data-i18n="process.step2.body">Our team scans and reconstructs the part in CAD, restoring worn or missing geometry to spec.</p>
-        </div>
-        <div class="step reveal">
-          <span class="step-num">03</span>
-          <h3 data-i18n="process.step3.title">We print &amp; finish</h3>
-          <p data-i18n="process.step3.body">Printed in a durable material suited to the part, then cleaned, finished, and quality-checked by hand.</p>
-        </div>
-        <div class="step reveal">
-          <span class="step-num">04</span>
-          <h3 data-i18n="process.step4.title">Delivered to your door</h3>
-          <p data-i18n="process.step4.body">Your new part ships worldwide, ready to install, with the digital file kept on file for reorders.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== PARTS GALLERY ===== -->
-  <section class="section" id="parts">
-    <div class="container">
-      <p class="eyebrow center" data-i18n="parts.eyebrow">Commonly restored</p>
-      <h2 class="section-title center" data-i18n="parts.title">Small parts, big headaches: solved</h2>
-      <p class="section-sub center" data-i18n="parts.sub">If it's brittle, discontinued, or priced like gold by a dealer, we can probably print it.</p>
-
-      <div class="grid grid-6 parts-grid">
-        <div class="part-tile reveal"><span class="part-icon">⬡</span><span data-i18n="parts.tile1">Dashboard clips</span></div>
-        <div class="part-tile reveal"><span class="part-icon">▭</span><span data-i18n="parts.tile2">Trim &amp; mouldings</span></div>
-        <div class="part-tile reveal"><span class="part-icon">◈</span><span data-i18n="parts.tile3">Tail-light housings</span></div>
-        <div class="part-tile reveal"><span class="part-icon">⚙</span><span data-i18n="parts.tile4">Interior brackets</span></div>
-        <div class="part-tile reveal"><span class="part-icon">◎</span><span data-i18n="parts.tile5">Knobs &amp; levers</span></div>
-        <div class="part-tile reveal"><span class="part-icon">▤</span><span data-i18n="parts.tile6">Grille components</span></div>
-        <div class="part-tile reveal"><span class="part-icon">⌗</span><span data-i18n="parts.tile7">HVAC vents</span></div>
-        <div class="part-tile reveal"><span class="part-icon">⬢</span><span data-i18n="parts.tile8">Switch surrounds</span></div>
-        <div class="part-tile reveal"><span class="part-icon">▥</span><span data-i18n="parts.tile9">Door handle parts</span></div>
-        <div class="part-tile reveal"><span class="part-icon">◫</span><span data-i18n="parts.tile10">Console inserts</span></div>
-        <div class="part-tile reveal"><span class="part-icon">⬣</span><span data-i18n="parts.tile11">Badge mounts</span></div>
-        <div class="part-tile reveal"><span class="part-icon">✚</span><span data-i18n="parts.tile12">Custom / other</span></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== MATERIALS ===== -->
-  <section class="section section-alt" id="materials">
-    <div class="container">
-      <p class="eyebrow center" data-i18n="materials.eyebrow">Materials</p>
-      <h2 class="section-title center" data-i18n="materials.title">Matched to the job, not one-size-fits-all</h2>
-
-      <div class="grid grid-3">
-        <article class="material-card reveal">
-          <h3 data-i18n="materials.card1.title">ASA / ABS</h3>
-          <span class="tag" data-i18n="materials.card1.tag">UV &amp; heat resistant</span>
-          <p data-i18n="materials.card1.body">Our default for exterior and dashboard parts, holding color and shape under sun and engine-bay heat.</p>
-        </article>
-        <article class="material-card reveal">
-          <h3 data-i18n="materials.card2.title">Reinforced Nylon</h3>
-          <span class="tag" data-i18n="materials.card2.tag">High impact strength</span>
-          <p data-i18n="materials.card2.body">Used for brackets and clips that take repeated stress or vibration, tougher than the factory original.</p>
-        </article>
-        <article class="material-card reveal">
-          <h3 data-i18n="materials.card3.title">Resin (SLA)</h3>
-          <span class="tag" data-i18n="materials.card3.tag">Fine detail finish</span>
-          <p data-i18n="materials.card3.body">For badges, switch surrounds, and trim where sharp edges and a smooth, paint-ready surface matter most.</p>
-        </article>
-      </div>
     </div>
   </section>
 
@@ -288,214 +154,6 @@
     </div>
   </section>
 
-  <!-- ===== TESTIMONIALS ===== -->
-  <section class="section section-alt" id="testimonials">
-    <div class="container">
-      <p class="eyebrow center" data-i18n="testimonials.eyebrow">From the garage</p>
-      <h2 class="section-title center" data-i18n="testimonials.title">Owners who found their unfindable part</h2>
-
-      <div class="grid grid-3">
-        <blockquote class="quote-card reveal">
-          <p data-i18n="testimonials.quote1">"Tracked down a dash vent clip for my W123 that's been NLA for fifteen years. Fit first try."</p>
-          <cite>R. Hendriks, Mercedes-Benz W123</cite>
-        </blockquote>
-        <blockquote class="quote-card reveal">
-          <p data-i18n="testimonials.quote2">"Sent them a bag of shattered trim clips from my 2002tii. Got back a full set, stronger than stock."</p>
-          <cite>M. Costa, BMW 2002tii</cite>
-        </blockquote>
-        <blockquote class="quote-card reveal">
-          <p data-i18n="testimonials.quote3">"The tail light housing quote from the dealer was absurd. 2LIFE printed one for a fraction of it."</p>
-          <cite>S. Dubois, Citroën DS</cite>
-        </blockquote>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== SPORTS DIVISION ===== -->
-  <section class="division-head" id="sports">
-    <div class="container">
-      <p class="division-kicker" data-i18n="divisions.sports.kicker">Division 02</p>
-      <h2 class="division-title" data-i18n="divisions.sports.label">Sports</h2>
-      <p class="division-sub" data-i18n="divisions.sports.sub">3D-printed padel accessories for clubs, courts and players, designed and made in Jakarta.</p>
-    </div>
-  </section>
-
-  <section class="section" id="sports-products">
-    <div class="container">
-      <p class="eyebrow center" data-i18n="sports.eyebrow">Padel range</p>
-      <h2 class="section-title center" data-i18n="sports.title">Built for the court, branded for your club</h2>
-      <p class="section-sub center" data-i18n="sports.sub">Practical pieces that keep rackets, bags and phones organised, available with your club's logo.</p>
-
-      <div class="grid grid-3">
-        <article class="card reveal">
-          <span class="card-icon"><svg viewBox="0 0 24 24"><path d="M4 3v18" stroke="#ff6a1a" stroke-width="1.8" stroke-linecap="round"/><path d="M4 8h6M4 15h6" stroke="#ff6a1a" stroke-width="1.8" stroke-linecap="round"/><ellipse cx="15" cy="9" rx="4" ry="4.5" fill="none" stroke="#ff6a1a" stroke-width="1.6"/><path d="M15 13.5V20" stroke="#ff6a1a" stroke-width="2" stroke-linecap="round"/></svg></span>
-          <h3 data-i18n="sports.p1.title"></h3>
-          <p data-i18n="sports.p1.body"></p>
-        </article>
-        <article class="card reveal">
-          <span class="card-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4" fill="none" stroke="#ff6a1a" stroke-width="1.8"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M4.9 19.1L7 17M17 7l2.1-2.1" stroke="#ff6a1a" stroke-width="1.8" stroke-linecap="round"/></svg></span>
-          <h3 data-i18n="sports.p2.title"></h3>
-          <p data-i18n="sports.p2.body"></p>
-        </article>
-        <article class="card reveal">
-          <span class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 3a2 2 0 0 1 2 2v2" fill="none" stroke="#ff6a1a" stroke-width="1.8" stroke-linecap="round"/><rect x="4" y="9" width="16" height="11" rx="2.5" fill="none" stroke="#ff6a1a" stroke-width="1.8"/><path d="M9 9V7.5a3 3 0 0 1 6 0V9" fill="none" stroke="#ff6a1a" stroke-width="1.8"/></svg></span>
-          <h3 data-i18n="sports.p3.title"></h3>
-          <p data-i18n="sports.p3.body"></p>
-        </article>
-        <article class="card reveal">
-          <span class="card-icon"><svg viewBox="0 0 24 24"><path d="M2 13h20" stroke="#ff6a1a" stroke-width="1.6" stroke-dasharray="2 2"/><rect x="4" y="5" width="6" height="11" rx="1.5" fill="none" stroke="#ff6a1a" stroke-width="1.8"/><rect x="14" y="5" width="6" height="11" rx="1.5" fill="none" stroke="#ff6a1a" stroke-width="1.8"/></svg></span>
-          <h3 data-i18n="sports.p4.title"></h3>
-          <p data-i18n="sports.p4.body"></p>
-        </article>
-        <article class="card reveal">
-          <span class="card-icon"><svg viewBox="0 0 24 24"><rect x="7" y="3" width="10" height="17" rx="5" fill="none" stroke="#ff6a1a" stroke-width="1.8"/><circle cx="12" cy="8" r="2" fill="none" stroke="#ff6a1a" stroke-width="1.5"/><circle cx="12" cy="13.5" r="2" fill="none" stroke="#ff6a1a" stroke-width="1.5"/></svg></span>
-          <span class="tag tag-soon" data-i18n="sports.soon">Coming soon</span>
-          <h3 data-i18n="sports.p5.title"></h3>
-          <p data-i18n="sports.p5.body"></p>
-        </article>
-        <article class="card reveal">
-          <span class="card-icon"><svg viewBox="0 0 24 24"><path d="M12 3l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.4 6.8 19.1l1-5.8-4.3-4.1 5.9-.9L12 3Z" fill="none" stroke="#ff6a1a" stroke-width="1.8" stroke-linejoin="round"/></svg></span>
-          <h3 data-i18n="sports.p6.title"></h3>
-          <p data-i18n="sports.p6.body"></p>
-        </article>
-      </div>
-
-      <div class="sports-cta reveal">
-        <p data-i18n="sports.ctaText">Running a club or several branches? Ask about volume pricing and logo customisation.</p>
-        <a href="#contact" class="btn btn-primary" data-category="sports" data-i18n="sports.ctaBtn">Request Club Pricing</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== SUPPORT ===== -->
-  <section class="section section-alt" id="support">
-    <div class="container">
-      <p class="eyebrow center" data-i18n="support.eyebrow">Support</p>
-      <h2 class="section-title center" data-i18n="support.title">Questions before you order?</h2>
-      <p class="section-sub center" data-i18n="support.sub">Quick answers below. For anything else, reach us directly; we usually reply within one business day.</p>
-
-      <div class="support-channels">
-        <a class="support-channel reveal" href="https://wa.me/6281615555777" target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" width="22" height="22"><path d="M4 20l1.2-3.6A8 8 0 1 1 8 19z" fill="none" stroke="#ff6a1a" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1-1.5-2-1-1 .8a4 4 0 0 1-1.8-1.8l.8-1-1-2z" fill="#ff6a1a"/></svg><span><strong>WhatsApp</strong><small>+62 816-1555-5777</small></span>
-        </a>
-        <a class="support-channel reveal" href="mailto:2lifeparts@gmail.com">
-          <svg viewBox="0 0 24 24" width="22" height="22"><path d="M4 5h16v14H4z" fill="none" stroke="#ff6a1a" stroke-width="1.7"/><path d="M4 6l8 7 8-7" fill="none" stroke="#ff6a1a" stroke-width="1.7"/></svg><span><strong data-i18n="support.email">Email</strong><small>2lifeparts@gmail.com</small></span>
-        </a>
-        <a class="support-channel reveal" href="tel:+6281615555777">
-          <svg viewBox="0 0 24 24" width="22" height="22"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2C10.5 21 3 13.5 3 6a2 2 0 0 1 2-2Z" fill="none" stroke="#ff6a1a" stroke-width="1.7" stroke-linejoin="round"/></svg><span><strong data-i18n="support.call">Call us</strong><small>+62 816-1555-5777</small></span>
-        </a>
-      </div>
-
-      <div class="faq reveal">
-        <details class="faq-item">
-          <summary data-i18n="support.q1"></summary>
-          <p data-i18n="support.a1"></p>
-        </details>
-        <details class="faq-item">
-          <summary data-i18n="support.q2"></summary>
-          <p data-i18n="support.a2"></p>
-        </details>
-        <details class="faq-item">
-          <summary data-i18n="support.q3"></summary>
-          <p data-i18n="support.a3"></p>
-        </details>
-        <details class="faq-item">
-          <summary data-i18n="support.q4"></summary>
-          <p data-i18n="support.a4"></p>
-        </details>
-        <details class="faq-item">
-          <summary data-i18n="support.q5"></summary>
-          <p data-i18n="support.a5"></p>
-        </details>
-        <details class="faq-item">
-          <summary data-i18n="support.q6"></summary>
-          <p data-i18n="support.a6"></p>
-        </details>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== CONTACT / QUOTE ===== -->
-  <section class="section contact" id="contact">
-    <div class="container contact-inner">
-      <div class="reveal">
-        <p class="eyebrow" data-i18n="contact.eyebrow">Get in touch</p>
-        <h2 class="section-title" data-i18n="contact.title">Tell us about your part</h2>
-        <p class="section-sub" data-i18n="contact.sub">Include your car's make, model and year, and your shipping address. We'll reply with a quote and turnaround time, usually within one business day.</p>
-
-        <ul class="contact-info">
-          <li>
-            <svg viewBox="0 0 24 24" width="18" height="18"><path d="M4 5h16v14H4z" fill="none" stroke="#ff6a1a" stroke-width="1.6"/><path d="M4 6l8 7 8-7" fill="none" stroke="#ff6a1a" stroke-width="1.6"/></svg>
-            <a href="mailto:2lifeparts@gmail.com">2lifeparts@gmail.com</a>
-          </li>
-          <li>
-            <svg viewBox="0 0 24 24" width="18" height="18"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2C10.5 21 3 13.5 3 6a2 2 0 0 1 2-2Z" fill="none" stroke="#ff6a1a" stroke-width="1.6" stroke-linejoin="round"/></svg>
-            <a href="tel:+6281615555777">+62 816-1555-5777</a>
-          </li>
-          <li>
-            <svg viewBox="0 0 24 24" width="18" height="18"><path d="M12 21s7-6.1 7-11.5A7 7 0 0 0 5 9.5C5 14.9 12 21 12 21Z" fill="none" stroke="#ff6a1a" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="9.5" r="2.3" fill="none" stroke="#ff6a1a" stroke-width="1.6"/></svg>
-            <span data-i18n="contact.shipping">Ships worldwide, based in Jakarta, Indonesia</span>
-          </li>
-        </ul>
-      </div>
-
-      <form class="quote-form reveal" id="quoteForm" novalidate>
-        <input type="hidden" name="access_key" value="08001b74-d6d9-4e71-8bfe-abc5bf38d771">
-        <input type="hidden" name="subject" value="New Part Request from 2LIFE website">
-        <input type="checkbox" name="botcheck" class="hp-field" tabindex="-1" autocomplete="off">
-        <div class="field">
-          <label for="category" data-i18n="form.category">What do you need?</label>
-          <select id="category" name="category">
-            <option value="automotive" data-i18n="form.categoryAuto">Automotive part</option>
-            <option value="sports" data-i18n="form.categorySports">Sports / padel products</option>
-          </select>
-        </div>
-        <div class="form-row">
-          <div class="field">
-            <label for="name" data-i18n="form.name">Name</label>
-            <input type="text" id="name" name="name" required autocomplete="name">
-            <span class="field-error" id="err-name"></span>
-          </div>
-          <div class="field">
-            <label for="email" data-i18n="form.email">Email</label>
-            <input type="email" id="email" name="email" required autocomplete="email">
-            <span class="field-error" id="err-email"></span>
-          </div>
-        </div>
-
-        <div class="form-row">
-          <div class="field">
-            <label for="carModel" data-i18n="form.carModel">Car make / model / year</label>
-            <input type="text" id="carModel" name="carModel" data-i18n-placeholder="form.carModelPlaceholder" placeholder="e.g. Porsche 911 (1986)" required>
-            <span class="field-error" id="err-carModel"></span>
-          </div>
-          <div class="field">
-            <label for="phone" data-i18n="form.phone">Phone number</label>
-            <input type="tel" id="phone" name="phone" data-i18n-placeholder="form.phonePlaceholder" placeholder="e.g. 0812-3456-7890" autocomplete="tel" required>
-            <span class="field-error" id="err-phone"></span>
-          </div>
-        </div>
-
-        <div class="field">
-          <label for="address" data-i18n="form.address">Shipping address</label>
-          <textarea id="address" name="address" rows="3" data-i18n-placeholder="form.addressPlaceholder" placeholder="Street, city, postal code, country" required></textarea>
-          <span class="field-error" id="err-address"></span>
-        </div>
-
-        <div class="field">
-          <label for="details" data-i18n="form.details">Describe the part</label>
-          <textarea id="details" name="details" rows="4" data-i18n-placeholder="form.detailsPlaceholder" placeholder="Where it's located, how it broke, any measurements you have..." required></textarea>
-          <span class="field-error" id="err-details"></span>
-        </div>
-
-        <p class="form-hint" data-i18n-html="form.photoHint">Need to send photos or videos? This form can't accept attachments yet, so email them to <a href="mailto:2lifeparts@gmail.com">2lifeparts@gmail.com</a> or message us at <a href="tel:+6281615555777">+62 816-1555-5777</a> directly.</p>
-
-        <button type="submit" class="btn btn-primary btn-block" data-i18n="form.submit">Send Request</button>
-        <p class="form-note" id="formNote" role="status" aria-live="polite"></p>
-      </form>
-    </div>
-  </section>
-
 </main>
 
 <!-- ===== FOOTER ===== -->
@@ -507,13 +165,11 @@
     </div>
 
     <nav class="footer-nav" aria-label="Footer">
-      <a href="#automotive" data-i18n="nav.automotive">Automotive</a>
-      <a href="#sports" data-i18n="nav.sports">Sports</a>
-      <a href="#process" data-i18n="nav.howItWorks">How It Works</a>
-      <a href="#materials" data-i18n="nav.materials">Materials</a>
-      <a href="#about" data-i18n="nav.about">About</a>
-      <a href="#support" data-i18n="nav.support">Support</a>
-      <a href="#contact" data-i18n="nav.contact">Contact</a>
+      <a href="index.html" data-i18n="nav.home">Home</a>
+      <a href="automotive.html" data-i18n="nav.automotive">Automotive</a>
+      <a href="sports.html" data-i18n="nav.sports">Sports</a>
+      <a href="support.html" data-i18n="nav.support">Support</a>
+      <a href="quote.html" data-i18n="header.cta">Get a Quote</a>
     </nav>
 
     <p class="footer-copy">&copy; <span id="year"></span> 2LIFE. <span data-i18n="footer.copy">All rights reserved. Manufacturer names are used to describe compatibility only.</span></p>

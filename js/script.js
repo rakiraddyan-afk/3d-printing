@@ -23,28 +23,14 @@
     });
   }
 
-  /* ---------- Active nav link on scroll ---------- */
-  var sections = document.querySelectorAll("main section[id]");
-  var navLinks = document.querySelectorAll(".nav-link");
-
-  function setActiveLink() {
-    var scrollPos = window.scrollY + 120;
-    var currentId = null;
-
-    sections.forEach(function (section) {
-      if (section.offsetTop <= scrollPos) {
-        currentId = section.id;
-      }
-    });
-
-    navLinks.forEach(function (link) {
-      var href = link.getAttribute("href").replace("#", "");
-      link.classList.toggle("active", href === currentId);
-    });
-  }
-
-  window.addEventListener("scroll", setActiveLink, { passive: true });
-  setActiveLink();
+  /* ---------- Highlight the current page in the menu ---------- */
+  var currentPage = document.documentElement.getAttribute("data-page") || "home";
+  document.querySelectorAll("[data-page]").forEach(function (link) {
+    if (link === document.documentElement) return;
+    var isCurrent = link.getAttribute("data-page") === currentPage;
+    link.classList.toggle("active", isCurrent);
+    if (isCurrent) link.setAttribute("aria-current", "page");
+  });
 
   /* ---------- Reveal on scroll ---------- */
   var revealEls = document.querySelectorAll(".reveal");
@@ -181,6 +167,10 @@
   }
 
   if (categorySelect) {
+    var requestedType = new URLSearchParams(window.location.search).get("type");
+    if (requestedType === "sports" || requestedType === "automotive") {
+      categorySelect.value = requestedType;
+    }
     categorySelect.addEventListener("change", applyCategory);
     applyCategory();
   }

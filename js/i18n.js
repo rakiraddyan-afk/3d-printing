@@ -153,7 +153,7 @@
       "support.email": `Email`,
       "support.call": `Call us`,
       "support.q1": `How do I get a quote?`,
-      "support.a1": `Fill in the form below or message us on WhatsApp with photos of the part or the products you need. We reply with a price and turnaround time, usually within one business day.`,
+      "support.a1": `Fill in our quote form or message us on WhatsApp with photos of the part or the products you need. We reply with a price and turnaround time, usually within one business day.`,
       "support.q2": `Can you make a car part from photos only?`,
       "support.a2": `Often, yes, if the photos are clear and include measurements. For complex parts, sending the original (even if broken) gives the best fit.`,
       "support.q3": `Do you ship outside Indonesia?`,
@@ -164,6 +164,15 @@
       "support.a5": `Yes. Any product in the sports range can carry your club's logo or name.`,
       "support.q6": `What if the part breaks again?`,
       "support.a6": `We keep the digital file on record, so a reorder is quick and fits the same as the first one.`,
+      "nav.home": `Home`,
+      "meta.title.automotive": `Automotive Parts | 2LIFE`,
+      "meta.title.sports": `Padel Accessories | 2LIFE`,
+      "meta.title.support": `Support | 2LIFE`,
+      "meta.title.quote": `Get a Quote | 2LIFE`,
+      "cta.automotive.text": `Have a part that's discontinued or cracked? Send us the details.`,
+      "cta.automotive.btn": `Request a Part`,
+      "cta.general.text": `Ready to order or still have a question? Tell us what you need.`,
+      "cta.general.btn": `Get a Quote`,
       "form.name": `Name`,
       "form.email": `Email`,
       "form.phone": `Phone number`,
@@ -341,7 +350,7 @@
       "support.email": `Email`,
       "support.call": `Telepon`,
       "support.q1": `Bagaimana cara mendapatkan penawaran harga?`,
-      "support.a1": `Isi formulir di bawah atau kirim pesan WhatsApp beserta foto komponen atau produk yang Anda butuhkan. Kami akan membalas dengan harga dan estimasi waktu pengerjaan, biasanya dalam satu hari kerja.`,
+      "support.a1": `Isi formulir penawaran kami atau kirim pesan WhatsApp beserta foto komponen atau produk yang Anda butuhkan. Kami akan membalas dengan harga dan estimasi waktu pengerjaan, biasanya dalam satu hari kerja.`,
       "support.q2": `Apakah bisa membuat suku cadang hanya dari foto?`,
       "support.a2": `Sering kali bisa, asalkan fotonya jelas dan disertai ukuran. Untuk komponen yang rumit, mengirim komponen aslinya (meski sudah rusak) memberi hasil yang paling pas.`,
       "support.q3": `Apakah melayani pengiriman ke luar Indonesia?`,
@@ -352,6 +361,15 @@
       "support.a5": `Bisa. Semua produk olahraga kami dapat diberi logo atau nama klub Anda.`,
       "support.q6": `Bagaimana jika komponennya rusak lagi?`,
       "support.a6": `Kami menyimpan file digitalnya, jadi pemesanan ulang cepat dan hasilnya sama pas seperti sebelumnya.`,
+      "nav.home": `Beranda`,
+      "meta.title.automotive": `Suku Cadang Otomotif | 2LIFE`,
+      "meta.title.sports": `Aksesori Padel | 2LIFE`,
+      "meta.title.support": `Bantuan | 2LIFE`,
+      "meta.title.quote": `Minta Penawaran | 2LIFE`,
+      "cta.automotive.text": `Punya komponen yang sudah tidak diproduksi atau retak? Kirimkan detailnya.`,
+      "cta.automotive.btn": `Minta Suku Cadang`,
+      "cta.general.text": `Siap memesan atau masih ada pertanyaan? Ceritakan kebutuhan Anda.`,
+      "cta.general.btn": `Minta Penawaran`,
       "form.name": `Nama`,
       "form.email": `Email`,
       "form.phone": `Nomor telepon`,
@@ -422,7 +440,9 @@
       el.setAttribute("aria-label", t(el.getAttribute("data-i18n-aria")));
     });
 
-    document.title = t("meta.title");
+    var page = document.documentElement.getAttribute("data-page");
+    var pageTitleKey = "meta.title." + page;
+    document.title = (page && t(pageTitleKey) !== pageTitleKey) ? t(pageTitleKey) : t("meta.title");
     var metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) metaDesc.setAttribute("content", t("meta.description"));
 
