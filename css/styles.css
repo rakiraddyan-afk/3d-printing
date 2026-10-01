@@ -971,3 +971,163 @@ h3{ font-weight: 650; font-stretch: 105%; }
 .hero-copy h1{ font-size: clamp(2.2rem, 4.7vw, 4rem); }
 .about-inner{ grid-template-columns: minmax(0, 720px); }
 .hero-copy h1{ line-height: 1.04; }
+
+/* =====================================================================
+   Flexible, accessible, softer
+   ===================================================================== */
+:root{
+  --orange-ink: #b8430a;      /* orange for text on light backgrounds (5:1) */
+  --ink-on-orange: #121315;   /* text on orange surfaces (6.4:1) */
+  --grey-ink: #5b6068;        /* secondary text on light backgrounds (6:1) */
+  --grey-soft: #a7acb3;       /* secondary text on dark backgrounds (7:1) */
+  --radius: 14px;
+  --radius-sm: 10px;
+  --gutter: clamp(16px, 4vw, 32px);
+  --section-y: clamp(56px, 8vw, 104px);
+}
+
+/* Fluid spacing instead of fixed jumps */
+.container{ padding-left: var(--gutter); padding-right: var(--gutter); }
+.section{ padding: var(--section-y) 0; }
+body{ font-size: clamp(1rem, 0.96rem + 0.2vw, 1.0625rem); line-height: 1.65; }
+p{ max-width: 68ch; }
+.section-sub.center, .section-title.center + p{ margin-left:auto; margin-right:auto; }
+
+/* Softer shapes */
+.btn{ border-radius: var(--radius-sm); min-height: 48px; padding: 12px 22px; }
+.btn-sm{ min-height: 44px; padding: 10px 18px; }
+.card, .material-card, .support-channel, .faq-item, .division-card, .quote-form, .sports-cta{ border-radius: var(--radius); }
+.part-tile{ border-radius: var(--radius-sm); }
+.card-icon{ border-radius: var(--radius-sm); }
+.field input, .field textarea, .field select{ border-radius: var(--radius-sm); min-height: 48px; }
+.gallery-images img{ border-radius: var(--radius-sm); }
+
+/* Readable contrast everywhere */
+.btn-primary, .btn-primary:hover{ color: var(--ink-on-orange); }
+.btn-primary:hover{ background: #ff7d3a; }
+.step-num{ color: var(--ink-on-orange); }
+.lang-switch-btn.active{ color: var(--ink-on-orange); }
+.eyebrow{ color: var(--orange-ink); }
+.about .eyebrow, .contact .eyebrow, .hero .eyebrow{ color: var(--orange); }
+.tag{ color: var(--orange-ink); background: rgba(255,106,26,0.10); }
+.section-sub, .fact span, .support-channel small, .gallery-pair figcaption{ color: var(--grey-ink); }
+.division-text, .division-sub, .footer-brand p{ color: var(--grey-soft); }
+.footer-copy, .footer-copy span{ color: #9aa0a7; }
+.skip-link{ color: var(--ink-on-orange); }
+@media (max-width: 900px){
+  .nav-link.active, .nav-link:hover{ color: var(--ink-on-orange); }
+}
+
+/* Comfortable tap targets */
+.logo{ min-height: 44px; }
+.nav-link{ display:inline-flex; align-items:center; min-height: 44px; }
+.lang-switch-btn{ min-width: 44px; min-height: 36px; }
+.footer-nav{ gap: 4px 18px; }
+.footer-nav a{ display:inline-flex; align-items:center; min-height: 44px; }
+.contact-info a{ display:inline-flex; align-items:center; min-height: 44px; }
+.faq-item summary{ min-height: 44px; }
+
+/* Grids that adapt to the space instead of fixed column counts */
+.grid-3{ grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); }
+.grid-4{ grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); }
+.grid-6.parts-grid{ grid-template-columns: repeat(auto-fill, minmax(min(100%, 160px), 1fr)); }
+.steps{ grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); }
+.facts-grid{ grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); }
+.divisions-grid{ grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr)); }
+.support-channels{ grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); }
+.grid-2{ grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr)); }
+@media (max-width: 980px){
+  .steps::before{ display:none; }
+}
+
+/* Long words and numbers never push past the edge */
+h1, h2, h3, p, a, span, li{ overflow-wrap: anywhere; hyphens: auto; }
+.btn, .nav-link, .logo-text, .lang-switch-btn{ overflow-wrap: normal; hyphens: manual; }
+
+/* Visible keyboard focus on everything you can tab to */
+:where(a, button, input, select, textarea, summary):focus-visible{
+  outline: 3px solid var(--orange);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+@media (max-width: 900px){
+  .nav{ margin: 0 calc(-1 * var(--gutter)); padding: 0 var(--gutter) 10px; width: calc(100% + 2 * var(--gutter)); }
+}
+.about .eyebrow{ color: var(--orange-ink); }
+
+/* ---------- Grids that never leave a lonely card ---------- */
+.grid-4, .steps, .facts-grid{ grid-template-columns: 1fr; }
+.grid-3, .support-channels{ grid-template-columns: 1fr; }
+.grid-6.parts-grid{ grid-template-columns: repeat(2, 1fr); }
+.divisions-grid, .grid-2{ grid-template-columns: 1fr; }
+@media (min-width: 480px){
+  .grid-6.parts-grid{ grid-template-columns: repeat(3, 1fr); }
+}
+@media (min-width: 600px){
+  .grid-4, .steps, .facts-grid{ grid-template-columns: repeat(2, 1fr); }
+  .grid-3{ grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 720px){
+  .divisions-grid, .grid-2{ grid-template-columns: repeat(2, 1fr); }
+  .grid-6.parts-grid{ grid-template-columns: repeat(4, 1fr); }
+}
+@media (min-width: 900px){
+  .grid-3, .support-channels{ grid-template-columns: repeat(3, 1fr); }
+}
+@media (min-width: 1040px){
+  .grid-4, .steps, .facts-grid{ grid-template-columns: repeat(4, 1fr); }
+  .grid-6.parts-grid{ grid-template-columns: repeat(6, 1fr); }
+}
+/* Three materials: 3 across, or stacked; never 2 + 1 */
+@media (min-width: 600px) and (max-width: 899px){
+  #materials .grid-3{ grid-template-columns: 1fr; }
+}
+/* Six sports products split evenly: 3 + 3 or 2 + 2 + 2 already */
+.steps::before{ display:none; }
+@media (min-width: 1040px){ .steps::before{ display:block; } }
+
+/* ---------- Headlines wrap gracefully ---------- */
+h1, h2, h3, .division-title, .workbench-figure{ text-wrap: balance; }
+p, li, figcaption{ text-wrap: pretty; }
+@media (max-width: 480px){
+  .hero-copy h1{ font-stretch: 108%; font-size: clamp(2rem, 9.4vw, 2.6rem); }
+  .division-title{ font-stretch: 112%; }
+}
+
+/* ---------- Quick-contact bar on phones and tablets ---------- */
+.action-bar{ display:none; }
+@media (max-width: 1319px){
+  .wa-float{ display:none; }
+  .action-bar{
+    display:flex; gap:10px;
+    position: fixed; left:0; right:0; bottom:0; z-index: 95;
+    padding: 10px var(--gutter) calc(10px + env(safe-area-inset-bottom));
+    background: rgba(18,19,21,0.94);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+  .action-bar a{
+    flex: 1; max-width: 320px;
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    min-height: 48px; border-radius: var(--radius-sm);
+    font-weight: 600; font-size: 0.95rem;
+    transition: transform 200ms var(--ease-out), background-color 200ms ease;
+  }
+  .action-bar a:active{ transform: scale(0.97); }
+  .action-bar-wa{ background: #25d366; color: #0b2e17; }
+  .action-bar-quote{ background: var(--orange); color: var(--ink-on-orange); }
+  .action-bar{ justify-content: center; }
+  /* reserve the bar's height so nothing ends up hidden under it */
+  body{ padding-bottom: calc(68px + env(safe-area-inset-bottom)); }
+}
+/* On the quote page the form is right there; keep just WhatsApp */
+html[data-page="quote"] .action-bar-quote{ display:none; }
+@media (min-width: 1320px){ .wa-float{ right: 24px; bottom: 24px; } }
+.footer-copy, .page-cta p, .sports-cta p, .form-note, .form-hint{ max-width: none; }
+@media (max-width: 480px){
+  .hero-copy h1{ font-stretch: 100%; font-size: clamp(1.75rem, 8.2vw, 2.4rem); }
+}
+.hero-copy h1 span{ display:block; text-wrap: balance; }
+@media (max-width: 480px){
+  .hero-copy h1{ font-stretch: 104%; font-size: clamp(1.9rem, 8.6vw, 2.5rem); }
+}

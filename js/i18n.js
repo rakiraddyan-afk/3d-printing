@@ -23,7 +23,7 @@
       "header.cta": `Get a Quote`,
 
       "hero.eyebrow": `3D printed &middot; Made to fit &middot; Jakarta`,
-      "hero.headline": `Discontinued car parts.<br>Custom padel gear.<br>Printed to fit.`,
+      "hero.headline": `<span>Discontinued car parts.</span> <span>Custom padel gear.</span> <span>Printed to fit.</span>`,
       "hero.sub": `2LIFE rebuilds the fragile plastic parts classic European car makers stopped producing, and makes racket holders and court accessories for padel clubs, with your logo on them.`,
       "hero.cta1": `Automotive Parts`,
       "hero.cta2": `Padel Accessories`,
@@ -233,7 +233,7 @@
       "header.cta": `Minta Penawaran`,
 
       "hero.eyebrow": `Cetak 3D &middot; Presisi &middot; Jakarta`,
-      "hero.headline": `Suku cadang mobil langka.<br>Aksesori padel kustom.<br>Dicetak presisi.`,
+      "hero.headline": `<span>Suku cadang mobil langka.</span> <span>Aksesori padel kustom.</span> <span>Dicetak presisi.</span>`,
       "hero.sub": `2LIFE membuat ulang komponen plastik rapuh yang sudah tidak diproduksi pabrikan mobil klasik Eropa, serta membuat holder raket dan aksesori lapangan untuk klub padel, lengkap dengan logo Anda.`,
       "hero.cta1": `Suku Cadang Otomotif`,
       "hero.cta2": `Aksesori Padel`,
