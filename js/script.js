@@ -132,6 +132,7 @@
       return pattern.test(value.trim()) ? "" : window.i18n.t("validation.email");
     },
     carModel: function (value) {
+      if (isSports()) return "";
       return value.trim().length >= 2 ? "" : window.i18n.t("validation.carModel");
     },
     phone: function (value) {
@@ -145,6 +146,52 @@
       return value.trim().length >= 10 ? "" : window.i18n.t("validation.details");
     }
   };
+
+  /* ---------- Enquiry type (automotive / sports) ---------- */
+  var categorySelect = form ? form.elements.category : null;
+
+  function isSports() {
+    return Boolean(categorySelect && categorySelect.value === "sports");
+  }
+
+  function setKey(el, attr, key) {
+    if (!el) return;
+    el.setAttribute(attr, key);
+    if (attr === "data-i18n") el.textContent = window.i18n.t(key);
+    else el.setAttribute("placeholder", window.i18n.t(key));
+  }
+
+  function applyCategory() {
+    if (!form) return;
+    var suffix = isSports() ? "Sports" : "";
+    var carLabel = form.querySelector('label[for="carModel"]');
+    var carInput = form.elements.carModel;
+    var detailsLabel = form.querySelector('label[for="details"]');
+    var detailsInput = form.elements.details;
+    setKey(carLabel, "data-i18n", "form.carModel" + suffix);
+    setKey(carInput, "data-i18n-placeholder", "form.carModelPlaceholder" + suffix);
+    setKey(detailsLabel, "data-i18n", "form.details" + suffix);
+    setKey(detailsInput, "data-i18n-placeholder", "form.detailsPlaceholder" + suffix);
+    if (carInput) {
+      carInput.required = !isSports();
+      carInput.closest(".field").classList.remove("invalid");
+      var err = document.getElementById("err-carModel");
+      if (err) err.textContent = "";
+    }
+  }
+
+  if (categorySelect) {
+    categorySelect.addEventListener("change", applyCategory);
+    applyCategory();
+  }
+
+  document.querySelectorAll("[data-category]").forEach(function (link) {
+    link.addEventListener("click", function () {
+      if (!categorySelect) return;
+      categorySelect.value = link.getAttribute("data-category");
+      applyCategory();
+    });
+  });
 
   if (form) {
     form.addEventListener("submit", function (event) {
@@ -195,6 +242,7 @@
             formNote.style.color = "";
             formNote.textContent = window.i18n.t("form.success");
             form.reset();
+            applyCategory();
             form.querySelectorAll(".field").forEach(function (field) {
               field.classList.remove("invalid");
             });
