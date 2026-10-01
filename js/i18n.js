@@ -23,7 +23,7 @@
       "header.cta": `Get a Quote`,
 
       "hero.eyebrow": `3D printed &middot; Made to fit &middot; Jakarta`,
-      "hero.headline": `Discontinued car parts. Custom padel gear.<br><span class="text-orange">Printed to fit.</span>`,
+      "hero.headline": `Discontinued car parts.<br>Custom padel gear.<br>Printed to fit.`,
       "hero.sub": `2LIFE rebuilds the fragile plastic parts classic European car makers stopped producing, and makes racket holders and court accessories for padel clubs, with your logo on them.`,
       "hero.cta1": `Automotive Parts`,
       "hero.cta2": `Padel Accessories`,
@@ -173,6 +173,19 @@
       "cta.automotive.btn": `Request a Part`,
       "cta.general.text": `Ready to order or still have a question? Tell us what you need.`,
       "cta.general.btn": `Get a Quote`,
+      "hero.dim": `measured from your original`,
+      "a11y.whatsapp": `Chat with us on WhatsApp`,
+      "facts.f1.title": `No minimum order`,
+      "facts.f1.text": `One clip or a full set.`,
+      "facts.f2.title": `Files kept on record`,
+      "facts.f2.text": `Reorders fit the same as the first.`,
+      "facts.f3.title": `Your club's logo`,
+      "facts.f3.text": `On any padel product.`,
+      "facts.f4.title": `Ships worldwide`,
+      "facts.f4.text": `From our workshop in Jakarta.`,
+      "bench.title": `Revisions until it fits like the original`,
+      "bench.body": `Our air-conditioning vent bezel went through more than 170 design revisions before we were happy with how it clipped in. Every part gets that same patience: we keep adjusting until it fits the way the factory part did.`,
+      "gallery.title": `Before and after`,
       "form.name": `Name`,
       "form.email": `Email`,
       "form.phone": `Phone number`,
@@ -220,7 +233,7 @@
       "header.cta": `Minta Penawaran`,
 
       "hero.eyebrow": `Cetak 3D &middot; Presisi &middot; Jakarta`,
-      "hero.headline": `Suku cadang mobil langka. Aksesori padel kustom.<br><span class="text-orange">Dicetak presisi.</span>`,
+      "hero.headline": `Suku cadang mobil langka.<br>Aksesori padel kustom.<br>Dicetak presisi.`,
       "hero.sub": `2LIFE membuat ulang komponen plastik rapuh yang sudah tidak diproduksi pabrikan mobil klasik Eropa, serta membuat holder raket dan aksesori lapangan untuk klub padel, lengkap dengan logo Anda.`,
       "hero.cta1": `Suku Cadang Otomotif`,
       "hero.cta2": `Aksesori Padel`,
@@ -370,6 +383,19 @@
       "cta.automotive.btn": `Minta Suku Cadang`,
       "cta.general.text": `Siap memesan atau masih ada pertanyaan? Ceritakan kebutuhan Anda.`,
       "cta.general.btn": `Minta Penawaran`,
+      "hero.dim": `diukur dari komponen asli Anda`,
+      "a11y.whatsapp": `Chat dengan kami di WhatsApp`,
+      "facts.f1.title": `Tanpa minimal pesanan`,
+      "facts.f1.text": `Satu klip atau satu set lengkap.`,
+      "facts.f2.title": `File disimpan`,
+      "facts.f2.text": `Pesanan ulang sama pasnya.`,
+      "facts.f3.title": `Logo klub Anda`,
+      "facts.f3.text": `Di semua produk padel.`,
+      "facts.f4.title": `Kirim ke seluruh dunia`,
+      "facts.f4.text": `Dari workshop kami di Jakarta.`,
+      "bench.title": `Revisi demi revisi hingga pas seperti aslinya`,
+      "bench.body": `Bezel ventilasi AC kami melewati lebih dari 170 revisi desain sebelum kami puas dengan cara pemasangannya. Setiap komponen mendapat ketelitian yang sama: kami terus menyesuaikan sampai pas seperti komponen pabrikan.`,
+      "gallery.title": `Sebelum dan sesudah`,
       "form.name": `Nama`,
       "form.email": `Email`,
       "form.phone": `Nomor telepon`,
@@ -471,11 +497,10 @@
     if (saved && TRANSLATIONS[saved]) {
       applyTranslations(saved);
     } else {
-      applyTranslations("en");
-      if (gate) {
-        gate.classList.add("is-open");
-      }
-      document.documentElement.classList.add("lang-gate-open");
+      /* First visit: follow the browser's language instead of asking */
+      var prefs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || "en"];
+      var detected = prefs.some(function (l) { return /^(id|in)\b/i.test(l); }) ? "id" : "en";
+      applyTranslations(detected);
     }
 
     if (gate) {

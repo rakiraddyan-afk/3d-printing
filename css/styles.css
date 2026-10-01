@@ -793,3 +793,181 @@ html.lang-swapping main, html.lang-swapping .site-footer{ opacity:0; }
   }
   .reveal:not(.is-visible){ opacity:1; transform:none; }
 }
+
+/* =====================================================================
+   Premium layer: type, palette, restraint
+   ===================================================================== */
+:root{
+  --black:#121315;
+  --near-black:#17181a;
+  --dark-grey:#1f2124;
+  --off-white:#f4f5f6;
+  --light-grey:#e4e6e9;
+  --grey:#7d828a;
+  --mid-grey:#3d4046;
+  --radius: 8px;
+  --font: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  --display: "Archivo", "IBM Plex Sans", Arial, sans-serif;
+}
+body{ font-family: var(--font); font-size: 1.0rem; }
+h1, h2, h3, .logo-text, .division-label, .division-title, .step-num, .workbench-figure{
+  font-family: var(--display);
+  font-stretch: 112%;
+  letter-spacing: -0.01em;
+}
+h1{ font-weight: 800; }
+h2{ font-weight: 750; }
+h3{ font-weight: 650; font-stretch: 105%; }
+.section-title{ font-size: clamp(1.7rem, 3.2vw, 2.4rem); line-height: 1.08; }
+.logo-text{ font-weight: 800; font-stretch: 125%; letter-spacing: 0.01em; }
+
+/* Labels: sentence case, quiet */
+.eyebrow{
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--orange-dark);
+}
+.about .eyebrow, .contact .eyebrow{ color: var(--orange); }
+.tag{ text-transform: none; }
+
+/* Buttons: precise rather than bubbly */
+.btn{ border-radius: 6px; font-weight: 600; letter-spacing: 0.01em; }
+.nav-link{ font-weight: 500; }
+
+/* Cards: no floating-card look, just a crisp edge that warms on hover */
+.card, .material-card, .support-channel, .faq-item{ border-radius: var(--radius); }
+.card:hover{ transform: translateY(-2px); box-shadow: none; border-color: var(--grey); }
+.card-icon{ border-radius: 6px; }
+
+/* ---------- Home banner: the one signature moment ---------- */
+.hero{
+  background:
+    linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px) 0 0 / 48px 48px,
+    linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px) 0 0 / 48px 48px,
+    var(--black);
+  padding: 112px 0 104px;
+  position: relative;
+}
+.hero::after{
+  content:""; position:absolute; inset:0; pointer-events:none;
+  background: radial-gradient(80% 70% at 30% 40%, transparent 40%, var(--black) 100%);
+}
+.hero-inner{ max-width: var(--container); text-align: left; position: relative; z-index: 1; }
+.hero-copy{ max-width: 780px; }
+.hero-copy h1{
+  font-size: clamp(2.5rem, 5.6vw, 4.6rem);
+  font-stretch: 125%;
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  margin-bottom: 0;
+}
+.hero-sub{ margin-left: 0; font-size: 1.12rem; color: #a3a8af; max-width: 52ch; }
+.hero-actions{ justify-content: flex-start; margin: 30px 0 0; }
+
+/* Dimension line, like an engineering drawing */
+.dim-line{
+  position: relative;
+  max-width: 560px;
+  height: 16px;
+  margin: 26px 0 28px;
+  border-left: 1px solid var(--orange);
+  border-right: 1px solid var(--orange);
+}
+.dim-line::before{
+  content:""; position:absolute; left:0; right:0; top:50%;
+  height:1px; background: var(--orange);
+  transform-origin: left center;
+  animation: dim-draw 1100ms var(--ease-out) 350ms both;
+}
+.dim-line span{
+  position:absolute; left:50%; top:50%; transform: translate(-50%, -50%);
+  background: var(--black);
+  padding: 0 12px;
+  color: var(--orange);
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+@keyframes dim-draw{ from{ transform: scaleX(0); } }
+
+/* ---------- Honest facts row ---------- */
+.facts{ background: var(--off-white); border-bottom: 1px solid var(--light-grey); }
+.facts-grid{ display:grid; grid-template-columns: repeat(4, 1fr); gap: 28px; padding-top: 40px; padding-bottom: 40px; }
+.fact{ padding-left: 18px; border-left: 2px solid var(--orange); }
+.fact strong{ display:block; font-family: var(--display); font-stretch: 112%; font-size: 1.05rem; color: var(--black); }
+.fact span{ font-size: 0.92rem; color: var(--grey); }
+
+/* ---------- Division cards and headers ---------- */
+.division-card{ border-radius: var(--radius); }
+.division-label{ font-stretch: 125%; text-transform: none; letter-spacing: -0.01em; }
+.division-title{ font-stretch: 125%; text-transform: none; letter-spacing: -0.02em; font-size: clamp(2.6rem, 7vw, 4.4rem); line-height: 1; }
+.division-head{ border-top: 0; padding: 88px 0 72px;
+  background:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px) 0 0 / 48px 48px,
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px) 0 0 / 48px 48px,
+    var(--black);
+}
+
+/* ---------- Parts list: type, not symbols ---------- */
+.part-tile{
+  aspect-ratio: auto;
+  align-items: flex-start;
+  justify-content: flex-end;
+  min-height: 92px;
+  padding: 18px;
+  text-align: left;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border-radius: 6px;
+  border-top: 2px solid var(--orange);
+}
+
+/* ---------- Workbench story ---------- */
+.workbench-inner{ display:grid; grid-template-columns: auto 1fr; gap: 56px; align-items: center; max-width: 960px; }
+.workbench-figure{
+  margin:0;
+  font-size: clamp(4.5rem, 12vw, 8.5rem);
+  font-weight: 800;
+  font-stretch: 125%;
+  line-height: 0.9;
+  color: var(--black);
+}
+.workbench .section-title{ margin-bottom: 12px; }
+.workbench p:not(.workbench-figure){ max-width: 56ch; }
+
+/* ---------- Before / after gallery (shown once photos exist) ---------- */
+.grid-2{ grid-template-columns: repeat(2, 1fr); }
+.gallery-images{ display:grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.gallery-images img{ width:100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 6px; }
+.gallery-pair figcaption{ margin-top: 10px; font-size: 0.92rem; color: var(--mid-grey); }
+
+/* ---------- Floating WhatsApp button ---------- */
+.wa-float{
+  position: fixed; right: 20px; bottom: 20px; z-index: 90;
+  width: 56px; height: 56px; border-radius: 50%;
+  display:flex; align-items:center; justify-content:center;
+  background: #25d366;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.28);
+  transition: transform 260ms var(--ease-out), box-shadow 260ms var(--ease-out);
+}
+.wa-float:hover{ transform: translateY(-3px) scale(1.04); box-shadow: 0 12px 28px rgba(0,0,0,0.32); }
+.wa-float:focus-visible, .btn:focus-visible, .nav-link:focus-visible{ outline: 2px solid var(--orange); outline-offset: 3px; }
+
+@media (max-width: 980px){
+  .facts-grid{ grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 720px){
+  .hero{ padding: 72px 0 64px; }
+  .facts-grid{ grid-template-columns: 1fr; gap: 18px; }
+  .workbench-inner{ grid-template-columns: 1fr; gap: 12px; }
+  .grid-2{ grid-template-columns: 1fr; }
+  .dim-line{ max-width: 100%; }
+  .wa-float{ right: 14px; bottom: 14px; width: 52px; height: 52px; }
+}
+
+/* Refinements after review */
+.hero-copy{ max-width: 900px; }
+.hero-copy h1{ font-size: clamp(2.2rem, 4.7vw, 4rem); }
+.about-inner{ grid-template-columns: minmax(0, 720px); }
+.hero-copy h1{ line-height: 1.04; }
