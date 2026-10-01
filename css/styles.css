@@ -508,7 +508,7 @@ html.lang-gate-open, html.lang-gate-open body{ overflow:hidden; height:100%; }
   color: var(--light-grey);
   margin-bottom:6px;
 }
-.field input, .field textarea{
+.field input, .field textarea, .field select{
   width:100%;
   background: var(--dark-grey);
   border:1px solid rgba(255,255,255,0.14);
@@ -520,7 +520,7 @@ html.lang-gate-open, html.lang-gate-open body{ overflow:hidden; height:100%; }
   transition: border-color var(--transition);
 }
 .field input::placeholder, .field textarea::placeholder{ color:#6b6c70; }
-.field input:focus, .field textarea:focus{
+.field input:focus, .field textarea:focus, .field select:focus{
   outline:none;
   border-color: var(--orange);
 }
@@ -612,4 +612,49 @@ html.lang-gate-open, html.lang-gate-open body{ overflow:hidden; height:100%; }
   .form-row{ grid-template-columns:1fr; }
   .section{ padding:60px 0; }
   .hero{ padding:56px 0 48px; }
+}
+
+/* ============ Divisions (Automotive / Sports) ============ */
+.divisions{ background: var(--black); padding: 0 0 56px; }
+.divisions-grid{ display:grid; grid-template-columns: repeat(2, 1fr); gap:20px; }
+.division-card{
+  display:flex; flex-direction:column; gap:10px;
+  padding: 30px 28px;
+  border-radius: var(--radius);
+  background: var(--dark-grey);
+  border:1px solid rgba(255,255,255,0.08);
+  color: var(--light-grey);
+  transition: transform var(--transition), border-color var(--transition), background var(--transition);
+}
+.division-card:hover{ transform: translateY(-4px); border-color: var(--orange); background:#232428; }
+.division-icon svg{ width:34px; height:34px; }
+.division-label{ font-size: clamp(1.5rem, 3vw, 2rem); font-weight:800; color:#fff; letter-spacing:0.04em; text-transform:uppercase; }
+.division-text{ font-size:0.95rem; color: var(--grey); }
+.division-go{ margin-top:auto; font-weight:700; font-size:0.9rem; color: var(--orange); }
+
+.division-head{
+  background: var(--black);
+  padding: 64px 0 56px;
+  border-top: 4px solid var(--orange);
+}
+.division-kicker{ color: var(--orange); font-weight:700; font-size:0.8rem; letter-spacing:0.14em; text-transform:uppercase; margin-bottom:8px; }
+.division-title{ color:#fff; font-size: clamp(2.2rem, 6vw, 3.6rem); letter-spacing:0.04em; text-transform:uppercase; margin-bottom:10px; }
+.division-sub{ color: var(--grey); max-width:60ch; margin:0; font-size:1.05rem; }
+
+.tag-soon{ margin-left:10px; vertical-align:top; }
+.sports-cta{
+  display:flex; align-items:center; justify-content:space-between; gap:24px;
+  margin-top:40px; padding:24px 28px;
+  border-radius: var(--radius);
+  background: var(--off-white);
+  border:1px solid var(--light-grey);
+}
+.sports-cta p{ margin:0; color: var(--near-black); font-weight:600; }
+
+.field select{ cursor:pointer; }
+
+@media (max-width: 720px){
+  .divisions-grid{ grid-template-columns:1fr; }
+  .sports-cta{ flex-direction:column; align-items:flex-start; }
+  .division-head{ padding:48px 0 40px; }
 }
