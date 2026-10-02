@@ -385,6 +385,17 @@ html.lang-gate-open, html.lang-gate-open body{ overflow:hidden; height:100%; }
   object-fit:cover;
   background: var(--light-grey);
 }
+.gallery-main{ margin-bottom:10px; }
+.gallery-thumbs{ display:grid; grid-template-columns:repeat(5, 1fr); gap:8px; margin-bottom:20px; }
+.gallery-thumb{
+  padding:0; border:2px solid transparent; border-radius:8px;
+  background: var(--light-grey); overflow:hidden; cursor:pointer;
+  opacity:0.65;
+  transition: opacity var(--transition), border-color var(--transition);
+}
+.gallery-thumb img{ display:block; width:100%; height:auto; aspect-ratio:1 / 1; object-fit:cover; }
+.gallery-thumb:hover, .gallery-thumb:focus-visible{ opacity:1; }
+.gallery-thumb.is-active{ opacity:1; border-color: var(--orange); }
 
 /* ============ Process steps ============ */
 .steps{

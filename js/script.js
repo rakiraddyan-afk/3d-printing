@@ -267,4 +267,21 @@
       });
     });
   }
+
+  /* ---- Product photo galleries ---- */
+  document.querySelectorAll("[data-gallery]").forEach(function (gallery) {
+    var main = gallery.querySelector(".gallery-main");
+    var thumbs = gallery.querySelectorAll(".gallery-thumb");
+    if (!main) return;
+    thumbs.forEach(function (thumb) {
+      thumb.addEventListener("click", function () {
+        main.src = thumb.getAttribute("data-src");
+        thumbs.forEach(function (other) {
+          var active = other === thumb;
+          other.classList.toggle("is-active", active);
+          other.setAttribute("aria-pressed", active ? "true" : "false");
+        });
+      });
+    });
+  });
 })();
