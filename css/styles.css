@@ -376,6 +376,15 @@ html.lang-gate-open, html.lang-gate-open body{ overflow:hidden; height:100%; }
 .card-icon svg{ width:24px; height:24px; }
 .card h3{ font-size:1.08rem; color: var(--black); }
 .card p{ font-size:0.92rem; margin:0; }
+.card-photo{ padding-top:0; overflow:hidden; }
+.card-media{
+  display:block;
+  width:calc(100% + 44px); max-width:none;
+  margin:0 -22px 20px;
+  aspect-ratio:4 / 3; height:auto;
+  object-fit:cover;
+  background: var(--light-grey);
+}
 
 /* ============ Process steps ============ */
 .steps{
@@ -642,6 +651,7 @@ html.lang-gate-open, html.lang-gate-open body{ overflow:hidden; height:100%; }
 .division-sub{ color: var(--grey); max-width:60ch; margin:0; font-size:1.05rem; }
 
 .tag-soon{ margin-left:10px; vertical-align:top; }
+.card-photo .tag-soon{ display:inline-block; margin:0 0 10px; }
 .sports-cta{
   display:flex; align-items:center; justify-content:space-between; gap:24px;
   margin-top:40px; padding:24px 28px;

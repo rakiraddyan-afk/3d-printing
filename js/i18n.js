@@ -462,6 +462,9 @@
     document.querySelectorAll("[data-i18n-placeholder]").forEach(function (el) {
       el.setAttribute("placeholder", t(el.getAttribute("data-i18n-placeholder")));
     });
+    document.querySelectorAll("[data-i18n-alt]").forEach(function (el) {
+      el.setAttribute("alt", t(el.getAttribute("data-i18n-alt")));
+    });
     document.querySelectorAll("[data-i18n-aria]").forEach(function (el) {
       el.setAttribute("aria-label", t(el.getAttribute("data-i18n-aria")));
     });
