@@ -1496,3 +1496,7 @@ html[data-page="cart"] .action-bar-quote{ display:none; }
 @media (prefers-reduced-motion: reduce){
   .confirm-check circle, .confirm-check path{ stroke-dashoffset: 0; }
 }
+
+/* Home: equal space above and below the Automotive / Sports cards */
+.divisions{ padding: clamp(40px, 5vw, 64px) 0; }
+.division-icon{ display:flex; align-items:center; height: 34px; }
