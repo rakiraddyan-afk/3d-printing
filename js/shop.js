@@ -12,8 +12,8 @@
     "racket-outdoor": { name: "sports.p1.title", variant: "shop.variant.outdoor", price: 80000,  img: "img/sports/indoor-racket-holder-1.jpg" },
     "bag-indoor":     { name: "sports.p3.title", variant: "shop.variant.indoor",  price: 35000,  img: "img/sports/bag-holder-1.jpg" },
     "bag-outdoor":    { name: "sports.p3.title", variant: "shop.variant.outdoor", price: 50000,  img: "img/sports/bag-holder-1.jpg" },
-    "phone-indoor":   { name: "sports.p4.title", variant: "shop.variant.indoor",  price: 150000, img: "img/sports/phone-holder.jpg" },
-    "phone-outdoor":  { name: "sports.p4.title", variant: "shop.variant.outdoor", price: 175000, img: "img/sports/phone-holder.jpg" },
+    "phone-indoor":   { name: "sports.p4.title", variant: "shop.variant.indoor",  price: 150000, img: "img/sports/phone-holder-1.jpg" },
+    "phone-outdoor":  { name: "sports.p4.title", variant: "shop.variant.outdoor", price: 175000, img: "img/sports/phone-holder-1.jpg" },
     "ball-dispenser": { name: "sports.p5.title", price: 180000, img: "img/sports/ball-dispenser-1.jpg" }
   };
 
