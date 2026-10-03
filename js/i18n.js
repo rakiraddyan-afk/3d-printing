@@ -215,6 +215,11 @@
       "form.errorNote": `Please fix the highlighted fields and try again.`,
       "form.success": `Thanks — your request has been sent. We'll get back to you soon.`,
       "form.sending": `Sending...`,
+      "sent.title": `Request sent`,
+      "sent.body": `Thanks, {name}. We have received your request and will reply to {email}, usually within one business day.`,
+      "sent.hint": `No need to send it again. If it is urgent, message us on WhatsApp.`,
+      "sent.done": `Done`,
+      "sent.whatsapp": `Chat on WhatsApp`,
       "form.submitError": `Something went wrong sending your request. Please try again, or email us directly at 2lifeparts@gmail.com.`,
 
       "footer.location": `Jakarta, Indonesia`,
@@ -524,6 +529,11 @@
       "form.errorNote": `Mohon perbaiki kolom yang ditandai lalu coba lagi.`,
       "form.success": `Terima kasih — permintaan Anda telah terkirim. Kami akan segera menghubungi Anda.`,
       "form.sending": `Mengirim...`,
+      "sent.title": `Permintaan terkirim`,
+      "sent.body": `Terima kasih, {name}. Permintaan Anda sudah kami terima dan akan kami balas ke {email}, biasanya dalam satu hari kerja.`,
+      "sent.hint": `Tidak perlu mengirim ulang. Jika mendesak, hubungi kami lewat WhatsApp.`,
+      "sent.done": `Selesai`,
+      "sent.whatsapp": `Chat lewat WhatsApp`,
       "form.submitError": `Terjadi kesalahan saat mengirim permintaan Anda. Silakan coba lagi, atau kirim email langsung ke 2lifeparts@gmail.com.`,
 
       "footer.location": `Jakarta, Indonesia`,

@@ -184,6 +184,34 @@
   });
 
   if (form) {
+    /* Pop-up shown only after the server confirms the request was received */
+    var sentDialog = document.getElementById("quoteSent");
+    var sentDetails = null;
+
+    function fillSentBody() {
+      if (!sentDialog || !sentDetails) return;
+      document.getElementById("quoteSentBody").textContent = window.i18n.t("sent.body")
+        .replace("{name}", sentDetails.name)
+        .replace("{email}", sentDetails.email);
+    }
+
+    function showSentConfirmation(name, email) {
+      if (!sentDialog || typeof sentDialog.showModal !== "function") return; /* the note under the form still confirms */
+      sentDetails = { name: name, email: email };
+      fillSentBody();
+      if (!sentDialog.open) sentDialog.showModal();
+      var closeBtn = document.getElementById("quoteSentClose");
+      if (closeBtn) closeBtn.focus();
+    }
+
+    if (sentDialog) {
+      document.getElementById("quoteSentClose").addEventListener("click", function () { sentDialog.close(); });
+      sentDialog.addEventListener("click", function (event) {
+        if (event.target === sentDialog) sentDialog.close(); /* click outside the card */
+      });
+      document.addEventListener("i18n:change", fillSentBody);
+    }
+
     form.addEventListener("submit", function (event) {
       event.preventDefault();
       var isValid = true;
@@ -231,6 +259,7 @@
           if (result.ok && result.data && result.data.success) {
             formNote.style.color = "";
             formNote.textContent = window.i18n.t("form.success");
+            showSentConfirmation(form.elements.name.value.trim(), form.elements.email.value.trim());
             form.reset();
             applyCategory();
             form.querySelectorAll(".field").forEach(function (field) {

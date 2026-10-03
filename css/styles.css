@@ -1469,3 +1469,30 @@ html[data-page="cart"] .action-bar-quote{ display:none; }
 .card-photo[id]{ scroll-margin-top: 96px; }
 @media (max-width: 900px){ .card-photo[id]{ scroll-margin-top: 132px; } }
 .cart-item-name a:hover{ color: var(--orange-ink); text-decoration: underline; }
+
+/* ============ "Request sent" confirmation ============ */
+.confirm{
+  width: min(440px, calc(100vw - 32px));
+  padding: 36px 28px 28px;
+  border: 0; border-radius: var(--radius);
+  background:#fff; color: var(--near-black);
+  text-align:center;
+  box-shadow: 0 24px 64px rgba(0,0,0,0.35);
+}
+.confirm::backdrop{ background: rgba(10,10,10,0.62); backdrop-filter: blur(3px); }
+.confirm[open]{ animation: confirm-in 360ms var(--ease-out); }
+.confirm[open]::backdrop{ animation: confirm-fade 260ms ease; }
+@keyframes confirm-in{ from{ opacity:0; transform: translateY(14px) scale(0.96); } }
+@keyframes confirm-fade{ from{ opacity:0; } }
+.confirm-check{ display:inline-flex; color:#1f9d55; margin-bottom: 14px; }
+.confirm-check circle{ stroke-dasharray: 139; stroke-dashoffset: 139; animation: confirm-draw 520ms var(--ease-out) 120ms forwards; }
+.confirm-check path{ stroke-dasharray: 32; stroke-dashoffset: 32; animation: confirm-draw 320ms var(--ease-out) 520ms forwards; }
+@keyframes confirm-draw{ to{ stroke-dashoffset: 0; } }
+.confirm h2{ font-size: 1.6rem; color: var(--black); margin: 0 0 10px; }
+.confirm p{ margin: 0 auto 10px; max-width: 34ch; color: var(--near-black); overflow-wrap: anywhere; }
+.confirm .confirm-hint{ font-size: 0.9rem; color: var(--grey-ink); }
+.confirm-actions{ display:flex; flex-wrap:wrap; gap: 10px; justify-content:center; margin-top: 22px; }
+.confirm-actions .btn{ flex: 1 1 150px; }
+@media (prefers-reduced-motion: reduce){
+  .confirm-check circle, .confirm-check path{ stroke-dashoffset: 0; }
+}
