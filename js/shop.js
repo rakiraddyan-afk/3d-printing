@@ -8,13 +8,13 @@
 
   /* Prices are the "starting from" per-piece prices in the 2026 catalogue (IDR). */
   var PRODUCTS = {
-    "racket-indoor":  { name: "sports.p1.title", variant: "shop.variant.indoor",  price: 65000,  img: "img/sports/indoor-racket-holder-1.jpg" },
-    "racket-outdoor": { name: "sports.p1.title", variant: "shop.variant.outdoor", price: 80000,  img: "img/sports/indoor-racket-holder-1.jpg" },
-    "bag-indoor":     { name: "sports.p3.title", variant: "shop.variant.indoor",  price: 35000,  img: "img/sports/bag-holder-1.jpg" },
-    "bag-outdoor":    { name: "sports.p3.title", variant: "shop.variant.outdoor", price: 50000,  img: "img/sports/bag-holder-1.jpg" },
-    "phone-indoor":   { name: "sports.p4.title", variant: "shop.variant.indoor",  price: 150000, img: "img/sports/phone-holder-1.jpg" },
-    "phone-outdoor":  { name: "sports.p4.title", variant: "shop.variant.outdoor", price: 175000, img: "img/sports/phone-holder-1.jpg" },
-    "ball-dispenser": { name: "sports.p5.title", price: 180000, img: "img/sports/ball-dispenser-1.jpg" }
+    "racket-indoor":  { anchor: "racket-holder", name: "sports.p1.title", variant: "shop.variant.indoor",  price: 65000,  img: "img/sports/indoor-racket-holder-1.jpg" },
+    "racket-outdoor": { anchor: "racket-holder", name: "sports.p1.title", variant: "shop.variant.outdoor", price: 80000,  img: "img/sports/indoor-racket-holder-1.jpg" },
+    "bag-indoor":     { anchor: "bag-holder", name: "sports.p3.title", variant: "shop.variant.indoor",  price: 35000,  img: "img/sports/bag-holder-1.jpg" },
+    "bag-outdoor":    { anchor: "bag-holder", name: "sports.p3.title", variant: "shop.variant.outdoor", price: 50000,  img: "img/sports/bag-holder-1.jpg" },
+    "phone-indoor":   { anchor: "phone-holder", name: "sports.p4.title", variant: "shop.variant.indoor",  price: 150000, img: "img/sports/phone-holder-1.jpg" },
+    "phone-outdoor":  { anchor: "phone-holder", name: "sports.p4.title", variant: "shop.variant.outdoor", price: 175000, img: "img/sports/phone-holder-1.jpg" },
+    "ball-dispenser": { anchor: "ball-dispenser", name: "sports.p5.title", price: 180000, img: "img/sports/ball-dispenser-1.jpg" }
   };
 
   function t(key) {
@@ -258,7 +258,11 @@
       row.appendChild(img);
 
       var info = el("div", "cart-item-info");
-      info.appendChild(el("h3", "cart-item-name", t(product.name)));
+      var nameEl = el("h3", "cart-item-name");
+      var nameLink = el("a", "", t(product.name));
+      nameLink.href = "sports.html#" + product.anchor;
+      nameEl.appendChild(nameLink);
+      info.appendChild(nameEl);
       if (product.variant) info.appendChild(el("p", "cart-item-variant", t(product.variant)));
       info.appendChild(el("p", "cart-item-unit", rupiah(product.price) + " " + t("shop.perPiece")));
       row.appendChild(info);
@@ -344,6 +348,22 @@
     Object.keys(validators).forEach(function (fieldName) {
       form.elements[fieldName].addEventListener("blur", function () { validateField(fieldName); });
     });
+
+    /* remember delivery details on this device so a repeat order is quicker */
+    var DETAILS_KEY = "2life-order-details";
+    var detailFields = ["name", "phone", "address", "city", "postal"];
+    try {
+      var saved = JSON.parse(window.localStorage.getItem(DETAILS_KEY) || "{}");
+      detailFields.forEach(function (fieldName) {
+        if (typeof saved[fieldName] === "string" && !form.elements[fieldName].value) form.elements[fieldName].value = saved[fieldName];
+      });
+    } catch (e) { /* nothing saved, or storage unavailable */ }
+    function saveDetails() {
+      var details = {};
+      detailFields.forEach(function (fieldName) { details[fieldName] = form.elements[fieldName].value; });
+      try { window.localStorage.setItem(DETAILS_KEY, JSON.stringify(details)); } catch (e) { /* ignore */ }
+    }
+    form.addEventListener("input", saveDetails);
 
     form.addEventListener("submit", function (event) {
       event.preventDefault();

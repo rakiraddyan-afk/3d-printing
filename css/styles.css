@@ -1440,3 +1440,32 @@ html[data-page="cart"] .action-bar-quote{ display:none; }
 .shop-hero-copy > :nth-child(2){ animation-delay: 80ms; }
 .shop-hero-copy > :nth-child(3){ animation-delay: 160ms; }
 .shop-hero-copy > :nth-child(4){ animation-delay: 240ms; }
+
+/* ============ Home: padel range strip ============ */
+.shop-strip-head{ display:flex; align-items:flex-end; justify-content:space-between; gap:24px; flex-wrap:wrap; margin-bottom: 32px; }
+.shop-strip-head .section-title{ margin-bottom: 8px; }
+.shop-strip-head .section-sub{ margin: 0; }
+.strip-grid{ display:grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr)); gap: 20px; }
+.strip-tile{
+  display:flex; flex-direction:column;
+  background:#fff; border:1px solid var(--light-grey); border-radius: var(--radius); overflow:hidden;
+  transition: border-color 220ms var(--ease-out);
+}
+.strip-tile:hover, .strip-tile:focus-visible{ border-color: var(--grey-ink); }
+.strip-tile:focus-visible{ outline:2px solid var(--orange); outline-offset:3px; }
+.strip-tile img{ width:100%; height:auto; aspect-ratio: 4 / 3; object-fit:cover; background:#dcdde0; transition: transform 500ms var(--ease-out); }
+.strip-tile:hover img{ transform: scale(1.03); }
+.strip-name{ padding: 16px 18px 2px; font-family: var(--display); font-stretch: 105%; font-weight: 650; font-size: 1.05rem; color: var(--black); }
+.strip-price{ padding: 0 18px 18px; font-size: 0.92rem; color: var(--grey-ink); }
+@media (max-width: 520px){ .strip-grid{ grid-template-columns: 1fr 1fr; gap: 12px; } .strip-name{ padding: 12px 12px 2px; font-size: 0.95rem; } .strip-price{ padding: 0 12px 14px; font-size: 0.85rem; } }
+
+/* ============ Footer contact ============ */
+.footer-contact{ display:flex; flex-wrap:wrap; gap: 4px 20px; margin: 12px 0 0; padding:0; list-style:none; font-size: 0.9rem; color: var(--grey-soft); }
+.footer-contact a{ display:inline-flex; align-items:center; min-height: 44px; color: var(--light-grey); }
+.footer-contact a:hover{ color: var(--orange); }
+.footer-contact li{ display:inline-flex; align-items:center; min-height: 44px; }
+
+/* product anchors land below the sticky header */
+.card-photo[id]{ scroll-margin-top: 96px; }
+@media (max-width: 900px){ .card-photo[id]{ scroll-margin-top: 132px; } }
+.cart-item-name a:hover{ color: var(--orange-ink); text-decoration: underline; }

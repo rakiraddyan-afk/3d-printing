@@ -217,6 +217,19 @@
       "form.sending": `Sending...`,
       "form.submitError": `Something went wrong sending your request. Please try again, or email us directly at 2lifeparts@gmail.com.`,
 
+      "footer.location": `Jakarta, Indonesia`,
+      "home.shop.title": `Padel accessories, ready to order`,
+      "home.shop.sub": `Four court pieces with fixed starting prices. Add your club's logo, order on WhatsApp.`,
+      "home.shop.cta": `Shop the padel range`,
+      "support.q7": `How do I order padel products?`,
+      "support.a7": `Add the products to your cart on the Sports page, fill in your delivery address, and send the order to us on WhatsApp. We reply with the shipping cost and the final total before you pay.`,
+      "shop.details.saved": `Your delivery details are saved on this device for next time.`,
+      "meta.description.home": `2LIFE 3D prints discontinued plastic parts for classic European cars and custom-branded padel court accessories for clubs. Made in Jakarta.`,
+      "meta.description.automotive": `2LIFE reverse-engineers and 3D prints fragile, discontinued plastic parts for classic European cars: trim clips, dashboard parts, housings and more.`,
+      "meta.description.sports": `Padel racket, bag and phone holders and a ball dispenser, 3D printed in Jakarta with your club's logo. From Rp 35.000 per piece. Order on WhatsApp.`,
+      "meta.description.support": `Answers about quotes, ordering, payment, shipping and custom logos for 2LIFE car parts and padel accessories.`,
+      "meta.description.quote": `Tell 2LIFE about the car part or padel products you need and get a quote, usually within one business day.`,
+      "meta.description.cart": `Review your 2LIFE padel order and send it on WhatsApp.`,
       "meta.title.cart": `Cart | 2LIFE`,
       "shop.hero.title": `Padel court accessories, made with your club's logo`,
       "shop.hero.sub": `Racket, bag and phone holders and a ball dispenser, 3D printed in Jakarta for indoor and outdoor courts.`,
@@ -513,6 +526,19 @@
       "form.sending": `Mengirim...`,
       "form.submitError": `Terjadi kesalahan saat mengirim permintaan Anda. Silakan coba lagi, atau kirim email langsung ke 2lifeparts@gmail.com.`,
 
+      "footer.location": `Jakarta, Indonesia`,
+      "home.shop.title": `Aksesori padel, siap dipesan`,
+      "home.shop.sub": `Empat produk lapangan dengan harga mulai yang jelas. Tambahkan logo klub Anda, pesan lewat WhatsApp.`,
+      "home.shop.cta": `Lihat produk padel`,
+      "support.q7": `Bagaimana cara memesan produk padel?`,
+      "support.a7": `Masukkan produk ke keranjang di halaman Olahraga, isi alamat pengiriman, lalu kirim pesanan ke kami lewat WhatsApp. Kami membalas dengan ongkos kirim dan total akhir sebelum Anda membayar.`,
+      "shop.details.saved": `Data pengiriman Anda disimpan di perangkat ini untuk pesanan berikutnya.`,
+      "meta.description.home": `2LIFE mencetak 3D suku cadang plastik mobil klasik Eropa yang sudah tidak diproduksi dan aksesori lapangan padel dengan logo klub. Dibuat di Jakarta.`,
+      "meta.description.automotive": `2LIFE merekayasa balik dan mencetak 3D suku cadang plastik rapuh yang sudah tidak diproduksi untuk mobil klasik Eropa: klip trim, komponen dasbor, rumah lampu, dan lainnya.`,
+      "meta.description.sports": `Holder raket, tas, dan ponsel serta dispenser bola padel, dicetak 3D di Jakarta dengan logo klub Anda. Mulai Rp 35.000 per pcs. Pesan lewat WhatsApp.`,
+      "meta.description.support": `Jawaban seputar penawaran, pemesanan, pembayaran, pengiriman, dan logo kustom untuk suku cadang mobil dan aksesori padel 2LIFE.`,
+      "meta.description.quote": `Ceritakan suku cadang mobil atau produk padel yang Anda butuhkan dan dapatkan penawaran dari 2LIFE, biasanya dalam satu hari kerja.`,
+      "meta.description.cart": `Periksa pesanan padel 2LIFE Anda dan kirim lewat WhatsApp.`,
       "meta.title.cart": `Keranjang | 2LIFE`,
       "shop.hero.title": `Aksesori lapangan padel, dengan logo klub Anda`,
       "shop.hero.sub": `Holder raket, tas, dan ponsel serta dispenser bola, dicetak 3D di Jakarta untuk lapangan indoor dan outdoor.`,
@@ -645,7 +671,8 @@
     var pageTitleKey = "meta.title." + page;
     document.title = (page && t(pageTitleKey) !== pageTitleKey) ? t(pageTitleKey) : t("meta.title");
     var metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) metaDesc.setAttribute("content", t("meta.description"));
+    var pageDescKey = "meta.description." + (page || "home");
+    if (metaDesc) metaDesc.setAttribute("content", t(pageDescKey) !== pageDescKey ? t(pageDescKey) : t("meta.description"));
 
     document.querySelectorAll(".lang-switch-btn").forEach(function (btn) {
       var isActive = btn.getAttribute("data-lang") === lang;
