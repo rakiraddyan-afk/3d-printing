@@ -17,7 +17,7 @@
 <meta property="og:image" content="https://rakiraddyan-afk.github.io/3d-printing/img/share.png">
 <meta property="og:url" content="https://rakiraddyan-afk.github.io/3d-printing/sports.html">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="stylesheet" href="css/styles.css?v=4">
+<link rel="stylesheet" href="css/styles.css?v=6">
 </head>
 <body>
 
@@ -76,6 +76,10 @@
         <button type="button" class="lang-switch-btn" data-lang="en" aria-pressed="true">EN</button>
         <button type="button" class="lang-switch-btn" data-lang="id" aria-pressed="false">ID</button>
       </div>
+      <a href="cart.html" class="cart-link" data-i18n-aria="shop.cart" aria-label="Cart">
+        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M3 4h2.5l2.2 10.5h9.8L20 7H7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><circle cx="9.5" cy="19" r="1.6" fill="currentColor"/><circle cx="16.5" cy="19" r="1.6" fill="currentColor"/></svg>
+        <span class="cart-count" data-cart-count hidden>0</span>
+      </a>
       <a href="quote.html" class="btn btn-primary btn-sm" data-page="quote" data-i18n="header.cta">Get a Quote</a>
     </div>
   </div>
@@ -83,22 +87,38 @@
 
 <main id="main">
 
-  <!-- ===== SPORTS DIVISION ===== -->
-  <section class="division-head" id="sports">
-    <div class="container">
-      <h2 class="division-title" data-i18n="divisions.sports.label">Sports</h2>
-      <p class="division-sub" data-i18n="divisions.sports.sub">3D-printed padel accessories for clubs, courts and players, designed and made in Jakarta.</p>
+  <!-- ===== SHOP HERO ===== -->
+  <section class="shop-hero" id="sports">
+    <div class="container shop-hero-inner">
+      <div class="shop-hero-copy">
+        <h1 data-i18n="shop.hero.title">Padel court accessories, made with your club's logo</h1>
+        <p class="shop-hero-sub" data-i18n="shop.hero.sub">Racket, bag and phone holders and a ball dispenser, 3D printed in Jakarta for indoor and outdoor courts.</p>
+        <div class="shop-hero-actions">
+          <a href="#sports-products" class="btn btn-primary" data-i18n="shop.hero.cta">Shop the range</a>
+          <a href="quote.html?type=sports" class="btn btn-ghost" data-i18n="sports.ctaBtn">Request Club Pricing</a>
+        </div>
+        <p class="shop-hero-note" data-i18n="shop.hero.note">From Rp 35.000 per piece. Order on WhatsApp and pay after we confirm.</p>
+      </div>
+      <img class="shop-hero-img" src="img/sports/hero-court.jpg" alt="" data-i18n-alt="shop.hero.alt" width="1600" height="1197" fetchpriority="high" decoding="async">
+    </div>
+  </section>
+
+  <section class="facts" data-i18n-aria="shop.facts.label">
+    <div class="container facts-grid">
+      <div class="fact"><strong data-i18n="shop.f1.title"></strong><span data-i18n="shop.f1.text"></span></div>
+      <div class="fact"><strong data-i18n="shop.f2.title"></strong><span data-i18n="shop.f2.text"></span></div>
+      <div class="fact"><strong data-i18n="shop.f3.title"></strong><span data-i18n="shop.f3.text"></span></div>
+      <div class="fact"><strong data-i18n="shop.f4.title"></strong><span data-i18n="shop.f4.text"></span></div>
     </div>
   </section>
 
   <section class="section" id="sports-products">
     <div class="container">
-      <p class="eyebrow center" data-i18n="sports.eyebrow">Padel range</p>
       <h2 class="section-title center" data-i18n="sports.title">Built for the court, branded for your club</h2>
       <p class="section-sub center" data-i18n="sports.sub">Practical pieces that keep rackets, bags and phones organised, available with your club's logo.</p>
 
       <div class="grid grid-3">
-        <article class="card card-photo reveal">
+        <article class="card card-photo">
           <div class="gallery" data-gallery>
             <img class="card-media gallery-main" src="img/sports/indoor-racket-holder-1.jpg" alt="" data-i18n-alt="sports.p1.title" width="1000" height="1000" decoding="async">
             <div class="gallery-thumbs" role="group" data-i18n-aria="sports.gallery.label">
@@ -111,13 +131,15 @@
           </div>
           <h3 data-i18n="sports.p1.title"></h3>
           <p data-i18n="sports.p1.body"></p>
+          <div class="buy" data-buy="racket-indoor"></div>
         </article>
-        <article class="card card-photo reveal">
+        <article class="card card-photo">
           <img class="card-media" src="img/sports/racket-holder-court.jpg" alt="" data-i18n-alt="sports.p2.title" width="1000" height="750" loading="lazy" decoding="async">
           <h3 data-i18n="sports.p2.title"></h3>
           <p data-i18n="sports.p2.body"></p>
+          <div class="buy" data-buy="racket-outdoor"></div>
         </article>
-        <article class="card card-photo reveal">
+        <article class="card card-photo">
           <div class="gallery" data-gallery>
             <img class="card-media gallery-main" src="img/sports/bag-holder-1.jpg" alt="" data-i18n-alt="sports.p3.title" width="1334" height="1000" decoding="async">
             <div class="gallery-thumbs" role="group" data-i18n-aria="sports.gallery.label">
@@ -129,13 +151,15 @@
           </div>
           <h3 data-i18n="sports.p3.title"></h3>
           <p data-i18n="sports.p3.body"></p>
+          <div class="buy" data-buy="bag-indoor,bag-outdoor"></div>
         </article>
-        <article class="card card-photo reveal">
+        <article class="card card-photo">
           <img class="card-media" src="img/sports/phone-holder.jpg" alt="" data-i18n-alt="sports.p4.title" width="1000" height="750" loading="lazy" decoding="async">
           <h3 data-i18n="sports.p4.title"></h3>
           <p data-i18n="sports.p4.body"></p>
+          <div class="buy" data-buy="phone-indoor,phone-outdoor"></div>
         </article>
-        <article class="card card-photo reveal">
+        <article class="card card-photo">
           <div class="gallery" data-gallery>
             <img class="card-media gallery-main" src="img/sports/ball-dispenser-1.jpg" alt="" data-i18n-alt="sports.p5.title" width="1334" height="1000" decoding="async">
             <div class="gallery-thumbs" role="group" data-i18n-aria="sports.gallery.label">
@@ -145,20 +169,56 @@
             <button type="button" class="gallery-thumb" data-src="img/sports/ball-dispenser-4.jpg" aria-pressed="false" data-i18n-aria="sports.gallery.4"><img src="img/sports/ball-dispenser-4.jpg" alt="" width="1334" height="1000" loading="lazy" decoding="async"></button>
             </div>
           </div>
-          <span class="tag tag-soon" data-i18n="sports.soon">Coming soon</span>
           <h3 data-i18n="sports.p5.title"></h3>
           <p data-i18n="sports.p5.body"></p>
+          <div class="buy" data-buy="ball-dispenser"></div>
         </article>
-        <article class="card card-photo reveal">
+        <article class="card card-photo card-brand">
           <img class="card-media" src="img/sports/custom-branding.jpg" alt="" data-i18n-alt="sports.p6.title" width="1000" height="750" loading="lazy" decoding="async">
           <h3 data-i18n="sports.p6.title"></h3>
           <p data-i18n="sports.p6.body"></p>
+          <a href="quote.html?type=sports" class="btn btn-ghost btn-sm buy-custom" data-i18n="shop.customCta">Ask about custom branding</a>
         </article>
       </div>
 
       <div class="sports-cta reveal">
         <p data-i18n="sports.ctaText">Running a club or several branches? Ask about volume pricing and logo customisation.</p>
         <a href="quote.html?type=sports" class="btn btn-primary" data-i18n="sports.ctaBtn">Request Club Pricing</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="how-to-order">
+    <div class="container">
+      <h2 class="section-title center" data-i18n="shop.order.title">How ordering works</h2>
+      <div class="steps steps-3">
+        <div class="step">
+          <span class="step-num">01</span>
+          <h3 data-i18n="shop.order.s1.title"></h3>
+          <p data-i18n="shop.order.s1.body"></p>
+        </div>
+        <div class="step">
+          <span class="step-num">02</span>
+          <h3 data-i18n="shop.order.s2.title"></h3>
+          <p data-i18n="shop.order.s2.body"></p>
+        </div>
+        <div class="step">
+          <span class="step-num">03</span>
+          <h3 data-i18n="shop.order.s3.title"></h3>
+          <p data-i18n="shop.order.s3.body"></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="shop-faq">
+    <div class="container">
+      <h2 class="section-title center" data-i18n="shop.faq.title">Before you order</h2>
+      <div class="faq">
+        <details class="faq-item"><summary data-i18n="shop.faq.q1"></summary><p data-i18n="shop.faq.a1"></p></details>
+        <details class="faq-item"><summary data-i18n="shop.faq.q2"></summary><p data-i18n="shop.faq.a2"></p></details>
+        <details class="faq-item"><summary data-i18n="shop.faq.q3"></summary><p data-i18n="shop.faq.a3"></p></details>
+        <details class="faq-item"><summary data-i18n="shop.faq.q4"></summary><p data-i18n="shop.faq.a4"></p></details>
       </div>
     </div>
   </section>
@@ -174,7 +234,7 @@
     <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 20l1.2-3.6A8 8 0 1 1 8 19z" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5l1-1.5-2-1-1 .8a4 4 0 0 1-1.8-1.8l.8-1-1-2z" fill="currentColor"/></svg>
     <span>WhatsApp</span>
   </a>
-  <a class="action-bar-quote" href="quote.html" data-i18n="header.cta">Get a Quote</a>
+  <a class="action-bar-quote" href="cart.html"><span data-i18n="shop.viewCart">View cart</span> <span class="cart-count" data-cart-count hidden>0</span></a>
 </nav>
 
 <!-- ===== FOOTER ===== -->
@@ -197,7 +257,8 @@
   </div>
 </footer>
 
-<script src="js/i18n.js?v=4"></script>
-<script src="js/script.js?v=4"></script>
+<script src="js/i18n.js?v=6"></script>
+<script src="js/script.js?v=6"></script>
+<script src="js/shop.js?v=6"></script>
 </body>
 </html>
