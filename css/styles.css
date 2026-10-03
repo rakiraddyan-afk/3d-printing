@@ -1377,3 +1377,18 @@ html[data-page="cart"] .action-bar-quote{ display:none; }
   .shop-hero-inner{ grid-template-columns: 1fr; }
   .shop-hero-img{ order: -1; aspect-ratio: 16 / 10; }
 }
+
+/* Racket holder gallery has six photos */
+.gallery-thumbs-6{ grid-template-columns: repeat(6, 1fr); gap:6px; }
+
+/* Five tiles: the branding offer spans two columns and lays out sideways */
+@media (min-width: 680px){
+  .card-brand{ grid-column: span 2; flex-direction: row; flex-wrap: wrap; align-content: center; padding: 0; overflow: hidden; }
+  .card-brand > .card-media{ width: 50%; max-width: 50%; height: 100%; margin: 0; aspect-ratio: auto; min-height: 320px; align-self: stretch; }
+  .card-brand-copy{ flex: 1; display:flex; flex-direction:column; justify-content:center; padding: 32px; }
+  .card-brand-copy h3{ font-size: 1.5rem; margin-bottom: 10px; }
+  .card-brand-copy .buy-custom{ margin-top: 22px; }
+}
+.card-brand-copy h3{ color:#fff; }
+.card-brand-copy p{ color: var(--grey-soft); margin: 0; }
+.card-brand-copy .buy-custom{ align-self:flex-start; margin-top: 18px; }

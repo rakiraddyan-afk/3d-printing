@@ -8,8 +8,8 @@
 
   /* Prices are the "starting from" per-piece prices in the 2026 catalogue (IDR). */
   var PRODUCTS = {
-    "racket-indoor":  { name: "sports.p1.title", price: 65000,  img: "img/sports/indoor-racket-holder-1.jpg" },
-    "racket-outdoor": { name: "sports.p2.title", price: 80000,  img: "img/sports/racket-holder-court.jpg" },
+    "racket-indoor":  { name: "sports.p1.title", variant: "shop.variant.indoor",  price: 65000,  img: "img/sports/indoor-racket-holder-1.jpg" },
+    "racket-outdoor": { name: "sports.p1.title", variant: "shop.variant.outdoor", price: 80000,  img: "img/sports/indoor-racket-holder-1.jpg" },
     "bag-indoor":     { name: "sports.p3.title", variant: "shop.variant.indoor",  price: 35000,  img: "img/sports/bag-holder-1.jpg" },
     "bag-outdoor":    { name: "sports.p3.title", variant: "shop.variant.outdoor", price: 50000,  img: "img/sports/bag-holder-1.jpg" },
     "phone-indoor":   { name: "sports.p4.title", variant: "shop.variant.indoor",  price: 150000, img: "img/sports/phone-holder.jpg" },
