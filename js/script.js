@@ -298,72 +298,107 @@
   }
 
   /* ---- Colour previews: repaint a black studio photo in another filament colour ----
-     The product is the only dark thing in these photos, so dark pixels are the product.
-     Its shading (layer lines, embossed text) is kept and mapped onto the chosen colour. */
+     Each photo has a matching mask in img/sports/masks/ (white = product, black = backdrop
+     and shadow), so only the product is recoloured and its shadow stays grey. The product's
+     shading (layer lines, embossed text) is kept and mapped onto the chosen colour. */
+  function loadImage(src) {
+    return new Promise(function (resolve, reject) {
+      var img = new Image();
+      img.onload = function () { resolve(img); };
+      img.onerror = reject;
+      img.src = src;
+    });
+  }
+
+  function maskFor(src) {
+    return src.replace(/img\/sports\/([^\/]+)\.jpg$/, "img/sports/masks/$1.png");
+  }
+
   var recolorCache = {};
   function recolorPhoto(src, rgb) {
     if (!rgb) return Promise.resolve(src);
     var key = src + "|" + rgb.join(",");
     if (recolorCache[key]) return recolorCache[key];
-    recolorCache[key] = new Promise(function (resolve) {
-      var img = new Image();
-      img.onerror = function () { resolve(src); };
-      img.onload = function () {
-        try {
-          var canvas = document.createElement("canvas");
-          canvas.width = img.naturalWidth;
-          canvas.height = img.naturalHeight;
-          var ctx = canvas.getContext("2d");
-          ctx.drawImage(img, 0, 0);
-          var image = ctx.getImageData(0, 0, canvas.width, canvas.height);
-          var d = image.data;
-          var n = d.length;
-          var i, lum;
+    recolorCache[key] = Promise.all([loadImage(src), loadImage(maskFor(src))]).then(function (loaded) {
+      var img = loaded[0];
+      var w = img.naturalWidth, h = img.naturalHeight;
+      var canvas = document.createElement("canvas");
+      canvas.width = w;
+      canvas.height = h;
+      var ctx = canvas.getContext("2d", { willReadFrequently: true });
 
-          /* median brightness of the product = its "normal" surface tone */
-          var hist = new Uint32Array(256);
-          var dark = 0;
-          for (i = 0; i < n; i += 4) {
-            lum = 0.2126 * d[i] + 0.7152 * d[i + 1] + 0.0722 * d[i + 2];
-            if (lum < 66) { hist[lum | 0]++; dark++; }
-          }
-          var ref = 32;
-          var seen = 0;
-          for (i = 0; i < 256; i++) { seen += hist[i]; if (seen >= dark / 2) { ref = Math.max(i, 8); break; } }
+      ctx.drawImage(loaded[1], 0, 0, w, h);
+      var mask = ctx.getImageData(0, 0, w, h).data;
+      ctx.drawImage(img, 0, 0);
+      var image = ctx.getImageData(0, 0, w, h);
+      var d = image.data;
+      var n = d.length;
+      var i, lum;
 
-          var cr = rgb[0] / 255, cg = rgb[1] / 255, cb = rgb[2] / 255;
-          var colorLum = 0.2126 * cr + 0.7152 * cg + 0.0722 * cb;
-          var floor = 0.30 + 0.40 * colorLum;
-          var gloss = 0.30 - 0.12 * colorLum;
-          var A = 0.42 * 255, B = 0.60 * 255;
+      /* median brightness of the product = its "normal" surface tone */
+      var hist = new Uint32Array(256);
+      var dark = 0;
+      for (i = 0; i < n; i += 4) {
+        if (mask[i] < 128) continue;
+        lum = 0.2126 * d[i] + 0.7152 * d[i + 1] + 0.0722 * d[i + 2];
+        if (lum < 66) { hist[lum | 0]++; dark++; }
+      }
+      var ref = 32;
+      var seen = 0;
+      for (i = 0; i < 256; i++) { seen += hist[i]; if (seen >= dark / 2) { ref = Math.max(i, 8); break; } }
 
-          for (i = 0; i < n; i += 4) {
-            lum = 0.2126 * d[i] + 0.7152 * d[i + 1] + 0.0722 * d[i + 2];
-            if (lum >= B) continue; /* backdrop */
-            var t = lum <= A ? 0 : (lum - A) / (B - A);
-            var mask = 1 - t * t * (3 - 2 * t);
-            var s = lum / ref;
-            var k = floor + (1 - floor) * Math.pow(Math.min(s, 1), 0.9);
-            var hi = (Math.min(Math.max(s - 1, 0), 2.5) / 2.5) * gloss;
-            var r = cr * k, g = cg * k, b = cb * k;
-            r += hi * (1 - r); g += hi * (1 - g); b += hi * (1 - b);
-            d[i] = d[i] * (1 - mask) + r * 255 * mask;
-            d[i + 1] = d[i + 1] * (1 - mask) + g * 255 * mask;
-            d[i + 2] = d[i + 2] * (1 - mask) + b * 255 * mask;
-          }
-          ctx.putImageData(image, 0, 0);
-          canvas.toBlob(function (blob) {
-            resolve(blob ? URL.createObjectURL(blob) : src);
-          }, "image/jpeg", 0.9);
-        } catch (e) {
-          resolve(src); /* keep the original photo if the browser refuses */
-        }
-      };
-      img.src = src;
+      var cr = rgb[0] / 255, cg = rgb[1] / 255, cb = rgb[2] / 255;
+      var colorLum = 0.2126 * cr + 0.7152 * cg + 0.0722 * cb;
+      var floor = 0.30 + 0.40 * colorLum;
+      var gloss = 0.30 - 0.12 * colorLum;
+
+      for (i = 0; i < n; i += 4) {
+        var m = mask[i] / 255;
+        if (m === 0) continue; /* backdrop or shadow: leave untouched */
+        lum = 0.2126 * d[i] + 0.7152 * d[i + 1] + 0.0722 * d[i + 2];
+        var s = lum / ref;
+        var k = floor + (1 - floor) * Math.pow(Math.min(s, 1), 0.9);
+        var hi = (Math.min(Math.max(s - 1, 0), 2.5) / 2.5) * gloss;
+        var r = cr * k, g = cg * k, b = cb * k;
+        r += hi * (1 - r); g += hi * (1 - g); b += hi * (1 - b);
+        d[i] = d[i] * (1 - m) + r * 255 * m;
+        d[i + 1] = d[i + 1] * (1 - m) + g * 255 * m;
+        d[i + 2] = d[i + 2] * (1 - m) + b * 255 * m;
+      }
+      ctx.putImageData(image, 0, 0);
+      return new Promise(function (resolve) {
+        canvas.toBlob(function (blob) {
+          resolve(blob ? URL.createObjectURL(blob) : src);
+        }, "image/jpeg", 0.9);
+      });
+    }).catch(function () {
+      return src; /* no mask or no canvas: keep the original photo */
     });
     return recolorCache[key];
   }
   window.twoLifeRecolor = recolorPhoto;
+
+  /* small square thumbnail cut from the recoloured photo, so it always matches */
+  var thumbCache = {};
+  function recolorThumb(src, rgb, fallback) {
+    if (!rgb) return Promise.resolve(fallback);
+    var key = src + "|" + rgb.join(",");
+    if (thumbCache[key]) return thumbCache[key];
+    thumbCache[key] = recolorPhoto(src, rgb).then(function (url) {
+      if (url === src) return fallback;
+      return loadImage(url).then(function (img) {
+        var side = Math.min(img.naturalWidth, img.naturalHeight);
+        var canvas = document.createElement("canvas");
+        canvas.width = 160;
+        canvas.height = 160;
+        canvas.getContext("2d").drawImage(img, (img.naturalWidth - side) / 2, (img.naturalHeight - side) / 2, side, side, 0, 0, 160, 160);
+        return new Promise(function (resolve) {
+          canvas.toBlob(function (blob) { resolve(blob ? URL.createObjectURL(blob) : fallback); }, "image/jpeg", 0.85);
+        });
+      });
+    }).catch(function () { return fallback; });
+    return thumbCache[key];
+  }
 
   /* ---- Product photo galleries: crossfade, swipe, arrow keys, colour ---- */
   document.querySelectorAll("[data-gallery]").forEach(function (gallery) {
@@ -415,14 +450,17 @@
       if (String(next) === String(rgb)) return;
       rgb = next;
       paintMain();
-      thumbs.forEach(function (thumb) {
-        var img = thumb.querySelector("img");
-        if (!img) return;
-        var wanted = rgb;
-        recolorPhoto(thumb.getAttribute("data-thumb-src"), rgb).then(function (url) {
-          if (wanted === rgb) img.src = url;
+      /* thumbnails one after another, so the page stays responsive */
+      var wanted = rgb;
+      thumbs.reduce(function (chain, thumb) {
+        return chain.then(function () {
+          var img = thumb.querySelector("img");
+          if (!img || wanted !== rgb) return null;
+          return recolorThumb(thumb.getAttribute("data-src"), rgb, thumb.getAttribute("data-thumb-src")).then(function (url) {
+            if (wanted === rgb) img.src = url;
+          });
         });
-      });
+      }, Promise.resolve());
     });
 
     thumbs.forEach(function (thumb, index) {
