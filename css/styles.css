@@ -1319,7 +1319,8 @@ html[data-page="cart"] .action-bar-quote{ display:none; }
 .section-alt .step{ background: transparent; }
 
 /* Product cards stay still: the buy controls are the interactive part */
-.card-photo, .card-photo:hover{ transform:none; box-shadow:none; }
+.card-photo, .card-photo:hover{ box-shadow:none; }
+.card-photo.is-visible:hover{ transform:none; }
 .card-photo:hover{ border-color: var(--light-grey); }
 .card-photo h3{ font-size: 1.15rem; margin-bottom: 6px; }
 .card-photo > p{ color: var(--grey-ink); }
@@ -1358,7 +1359,7 @@ html[data-page="cart"] .action-bar-quote{ display:none; }
   position: fixed; left: 50%; bottom: 24px; z-index: 120;
   transform: translate(-50%, 16px);
   display:flex; align-items:center; gap: 16px;
-  max-width: calc(100vw - 32px);
+  width: max-content; max-width: calc(100vw - 32px);
   padding: 12px 14px 12px 18px;
   background: var(--black); color:#fff;
   border-radius: var(--radius-sm);
@@ -1392,3 +1393,50 @@ html[data-page="cart"] .action-bar-quote{ display:none; }
 .card-brand-copy h3{ color:#fff; }
 .card-brand-copy p{ color: var(--grey-soft); margin: 0; }
 .card-brand-copy .buy-custom{ align-self:flex-start; margin-top: 18px; }
+
+/* ============ Smooth interactions ============ */
+/* Gallery: photos crossfade instead of cutting */
+.gallery-main{ transition: opacity 160ms ease; touch-action: pan-y; }
+.gallery-main.is-swapping{ opacity: 0; }
+.gallery-thumb{ transition: opacity 200ms var(--ease-out), border-color 200ms var(--ease-out), transform 200ms var(--ease-out); }
+.gallery-thumb:active{ transform: scale(0.94); }
+
+/* Version switch: the white pill slides between the two options */
+.seg{ position: relative; }
+.seg::before{
+  content:""; position:absolute; top:4px; bottom:4px; left:4px;
+  width: calc(50% - 6px);
+  background:#fff; border-radius: 7px;
+  box-shadow: 0 0 0 1px var(--grey-ink);
+  transition: transform 280ms var(--ease-out);
+}
+.seg[data-active="1"]::before{ transform: translateX(calc(100% + 4px)); }
+.seg-btn{ position: relative; z-index: 1; transition: color 200ms var(--ease-out); }
+.seg-btn.is-active{ background: transparent; box-shadow: none; }
+
+/* Price rolls in when the version changes */
+.buy-price strong{ display:inline-block; }
+.buy-price strong.is-ticking{ animation: price-tick 320ms var(--ease-out); }
+@keyframes price-tick{ from{ opacity:0; transform: translateY(6px); } }
+
+/* Buttons and steppers answer the press */
+.qty-btn{ transition: background-color 160ms ease, transform 120ms ease; }
+.qty-btn:active{ transform: scale(0.88); }
+.buy-add{ transition: background-color 220ms var(--ease-out), color 220ms var(--ease-out), transform 120ms ease; }
+
+/* Cart badge pops when something is added */
+.cart-count.is-popping{ animation: badge-pop 420ms var(--ease-out); }
+@keyframes badge-pop{ 0%{ transform: scale(1); } 40%{ transform: scale(1.45); } 100%{ transform: scale(1); } }
+
+/* Cart rows slide away when removed */
+.cart-item{ transition: opacity 220ms ease, transform 220ms ease, height 240ms var(--ease-out), padding 240ms var(--ease-out), margin 240ms var(--ease-out), border-width 240ms; overflow: hidden; }
+.cart-item.is-leaving{ opacity:0; transform: translateX(16px); height:0 !important; padding-top:0; padding-bottom:0; margin-bottom:-14px; border-width:0; }
+
+/* Product cards keep their scroll-in, but do not lift on hover */
+.card-photo{ transform: translateY(0); }
+.card-photo.reveal:not(.is-visible){ transform: translateY(26px); }
+.shop-hero-img{ animation: rise 900ms var(--ease-out) 120ms both; }
+.shop-hero-copy > *{ animation: rise 900ms var(--ease-out) both; }
+.shop-hero-copy > :nth-child(2){ animation-delay: 80ms; }
+.shop-hero-copy > :nth-child(3){ animation-delay: 160ms; }
+.shop-hero-copy > :nth-child(4){ animation-delay: 240ms; }

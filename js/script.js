@@ -268,20 +268,74 @@
     });
   }
 
-  /* ---- Product photo galleries ---- */
+  /* ---- Product photo galleries: crossfade, swipe, arrow keys ---- */
   document.querySelectorAll("[data-gallery]").forEach(function (gallery) {
     var main = gallery.querySelector(".gallery-main");
-    var thumbs = gallery.querySelectorAll(".gallery-thumb");
-    if (!main) return;
-    thumbs.forEach(function (thumb) {
-      thumb.addEventListener("click", function () {
-        main.src = thumb.getAttribute("data-src");
-        thumbs.forEach(function (other) {
-          var active = other === thumb;
-          other.classList.toggle("is-active", active);
-          other.setAttribute("aria-pressed", active ? "true" : "false");
-        });
+    var thumbs = Array.prototype.slice.call(gallery.querySelectorAll(".gallery-thumb"));
+    if (!main || !thumbs.length) return;
+    var current = 0;
+    var swapTimer = null;
+
+    function show(index) {
+      index = (index + thumbs.length) % thumbs.length;
+      if (index === current) return;
+      current = index;
+      var src = thumbs[index].getAttribute("data-src");
+      thumbs.forEach(function (thumb, i) {
+        thumb.classList.toggle("is-active", i === index);
+        thumb.setAttribute("aria-pressed", i === index ? "true" : "false");
+      });
+
+      /* fade out, swap once the new photo is ready, fade back in */
+      var next = new Image();
+      var swapped = false;
+      function swap() {
+        if (swapped || thumbs[current].getAttribute("data-src") !== src) return;
+        swapped = true;
+        main.src = src;
+        main.classList.remove("is-swapping");
+      }
+      main.classList.add("is-swapping");
+      window.clearTimeout(swapTimer);
+      next.onload = next.onerror = function () { swapTimer = window.setTimeout(swap, 140); };
+      next.src = src;
+    }
+
+    thumbs.forEach(function (thumb, index) {
+      thumb.addEventListener("click", function () { show(index); });
+      thumb.addEventListener("keydown", function (event) {
+        if (event.key !== "ArrowRight" && event.key !== "ArrowLeft") return;
+        event.preventDefault();
+        var target = (index + (event.key === "ArrowRight" ? 1 : -1) + thumbs.length) % thumbs.length;
+        show(target);
+        thumbs[target].focus();
       });
     });
+
+    /* swipe the large photo on touch screens */
+    var startX = null;
+    var startY = null;
+    main.addEventListener("touchstart", function (event) {
+      startX = event.touches[0].clientX;
+      startY = event.touches[0].clientY;
+    }, { passive: true });
+    main.addEventListener("touchend", function (event) {
+      if (startX === null) return;
+      var dx = event.changedTouches[0].clientX - startX;
+      var dy = event.changedTouches[0].clientY - startY;
+      startX = null;
+      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.5) show(current + (dx < 0 ? 1 : -1));
+    }, { passive: true });
+
+    /* fetch the other photos once the page is idle so switching is instant */
+    function preload() {
+      thumbs.forEach(function (thumb) { new Image().src = thumb.getAttribute("data-src"); });
+    }
+    function whenIdle() {
+      if ("requestIdleCallback" in window) window.requestIdleCallback(preload, { timeout: 4000 });
+      else window.setTimeout(preload, 1500);
+    }
+    if (document.readyState === "complete") whenIdle();
+    else window.addEventListener("load", whenIdle);
   });
 })();

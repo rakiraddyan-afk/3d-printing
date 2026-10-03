@@ -89,11 +89,19 @@
     return items.reduce(function (sum, item) { return sum + PRODUCTS[item.id].price * item.qty; }, 0);
   }
 
+  var lastCount = null;
   function updateCount() {
     var count = cartCount(readCart());
+    var grew = lastCount !== null && count > lastCount;
+    lastCount = count;
     document.querySelectorAll("[data-cart-count]").forEach(function (el) {
       el.textContent = count;
       el.hidden = count === 0;
+      if (grew) {
+        el.classList.remove("is-popping");
+        void el.offsetWidth; /* restart the animation */
+        el.classList.add("is-popping");
+      }
     });
   }
 
@@ -189,7 +197,13 @@
         var choose = function (id) {
           current = id;
           block.setAttribute("data-selected", id);
-          amount.textContent = rupiah(PRODUCTS[id].price);
+          if (amount.textContent !== rupiah(PRODUCTS[id].price)) {
+            amount.textContent = rupiah(PRODUCTS[id].price);
+            amount.classList.remove("is-ticking");
+            void amount.offsetWidth; /* restart the animation */
+            amount.classList.add("is-ticking");
+          }
+          group.setAttribute("data-active", String(ids.indexOf(id)));
           buttons.forEach(function (button, index) {
             var active = ids[index] === id;
             button.classList.toggle("is-active", active);
@@ -250,17 +264,24 @@
       row.appendChild(info);
 
       var controls = el("div", "cart-item-controls");
+      var lineTotal = el("p", "cart-item-total", rupiah(product.price * item.qty));
       controls.appendChild(qtyStepper(item.qty, function (qty) {
+        /* update the numbers in place so the list does not jump */
         setQty(item.id, qty);
-        renderCart();
+        lineTotal.textContent = rupiah(product.price * qty);
+        updateSubtotal();
       }));
-      controls.appendChild(el("p", "cart-item-total", rupiah(product.price * item.qty)));
+      controls.appendChild(lineTotal);
       var remove = el("button", "cart-item-remove", t("shop.remove"));
       remove.type = "button";
       remove.setAttribute("aria-label", t("shop.remove") + ": " + productLabel(item.id));
       remove.addEventListener("click", function () {
         removeFromCart(item.id);
-        renderCart();
+        updateSubtotal();
+        row.style.height = row.offsetHeight + "px";
+        void row.offsetHeight;
+        row.classList.add("is-leaving");
+        window.setTimeout(renderCart, 260);
       });
       controls.appendChild(remove);
       row.appendChild(controls);
@@ -268,8 +289,12 @@
       list.appendChild(row);
     });
 
+    updateSubtotal();
+  }
+
+  function updateSubtotal() {
     var subtotal = document.getElementById("cartSubtotal");
-    if (subtotal) subtotal.textContent = rupiah(cartSubtotal(items));
+    if (subtotal) subtotal.textContent = rupiah(cartSubtotal(readCart()));
   }
 
   /* ---------- Checkout: build the WhatsApp order message ---------- */
