@@ -297,38 +297,133 @@
     });
   }
 
-  /* ---- Product photo galleries: crossfade, swipe, arrow keys ---- */
+  /* ---- Colour previews: repaint a black studio photo in another filament colour ----
+     The product is the only dark thing in these photos, so dark pixels are the product.
+     Its shading (layer lines, embossed text) is kept and mapped onto the chosen colour. */
+  var recolorCache = {};
+  function recolorPhoto(src, rgb) {
+    if (!rgb) return Promise.resolve(src);
+    var key = src + "|" + rgb.join(",");
+    if (recolorCache[key]) return recolorCache[key];
+    recolorCache[key] = new Promise(function (resolve) {
+      var img = new Image();
+      img.onerror = function () { resolve(src); };
+      img.onload = function () {
+        try {
+          var canvas = document.createElement("canvas");
+          canvas.width = img.naturalWidth;
+          canvas.height = img.naturalHeight;
+          var ctx = canvas.getContext("2d");
+          ctx.drawImage(img, 0, 0);
+          var image = ctx.getImageData(0, 0, canvas.width, canvas.height);
+          var d = image.data;
+          var n = d.length;
+          var i, lum;
+
+          /* median brightness of the product = its "normal" surface tone */
+          var hist = new Uint32Array(256);
+          var dark = 0;
+          for (i = 0; i < n; i += 4) {
+            lum = 0.2126 * d[i] + 0.7152 * d[i + 1] + 0.0722 * d[i + 2];
+            if (lum < 66) { hist[lum | 0]++; dark++; }
+          }
+          var ref = 32;
+          var seen = 0;
+          for (i = 0; i < 256; i++) { seen += hist[i]; if (seen >= dark / 2) { ref = Math.max(i, 8); break; } }
+
+          var cr = rgb[0] / 255, cg = rgb[1] / 255, cb = rgb[2] / 255;
+          var colorLum = 0.2126 * cr + 0.7152 * cg + 0.0722 * cb;
+          var floor = 0.30 + 0.40 * colorLum;
+          var gloss = 0.30 - 0.12 * colorLum;
+          var A = 0.42 * 255, B = 0.60 * 255;
+
+          for (i = 0; i < n; i += 4) {
+            lum = 0.2126 * d[i] + 0.7152 * d[i + 1] + 0.0722 * d[i + 2];
+            if (lum >= B) continue; /* backdrop */
+            var t = lum <= A ? 0 : (lum - A) / (B - A);
+            var mask = 1 - t * t * (3 - 2 * t);
+            var s = lum / ref;
+            var k = floor + (1 - floor) * Math.pow(Math.min(s, 1), 0.9);
+            var hi = (Math.min(Math.max(s - 1, 0), 2.5) / 2.5) * gloss;
+            var r = cr * k, g = cg * k, b = cb * k;
+            r += hi * (1 - r); g += hi * (1 - g); b += hi * (1 - b);
+            d[i] = d[i] * (1 - mask) + r * 255 * mask;
+            d[i + 1] = d[i + 1] * (1 - mask) + g * 255 * mask;
+            d[i + 2] = d[i + 2] * (1 - mask) + b * 255 * mask;
+          }
+          ctx.putImageData(image, 0, 0);
+          canvas.toBlob(function (blob) {
+            resolve(blob ? URL.createObjectURL(blob) : src);
+          }, "image/jpeg", 0.9);
+        } catch (e) {
+          resolve(src); /* keep the original photo if the browser refuses */
+        }
+      };
+      img.src = src;
+    });
+    return recolorCache[key];
+  }
+  window.twoLifeRecolor = recolorPhoto;
+
+  /* ---- Product photo galleries: crossfade, swipe, arrow keys, colour ---- */
   document.querySelectorAll("[data-gallery]").forEach(function (gallery) {
     var main = gallery.querySelector(".gallery-main");
     var thumbs = Array.prototype.slice.call(gallery.querySelectorAll(".gallery-thumb"));
     if (!main || !thumbs.length) return;
     var current = 0;
-    var swapTimer = null;
+    var rgb = null; /* null = the original black photos */
+    var request = 0;
+    thumbs.forEach(function (thumb) {
+      var img = thumb.querySelector("img");
+      if (img) thumb.setAttribute("data-thumb-src", img.getAttribute("src"));
+    });
+
+    /* fade out, swap once the new photo is ready, fade back in */
+    function paintMain() {
+      var mine = ++request;
+      main.classList.add("is-swapping");
+      var started = Date.now();
+      recolorPhoto(thumbs[current].getAttribute("data-src"), rgb).then(function (url) {
+        var wait = Math.max(0, 140 - (Date.now() - started));
+        window.setTimeout(function () {
+          if (mine !== request) return;
+          var loader = new Image();
+          loader.onload = loader.onerror = function () {
+            if (mine !== request) return;
+            main.src = url;
+            main.classList.remove("is-swapping");
+          };
+          loader.src = url;
+        }, wait);
+      });
+    }
 
     function show(index) {
       index = (index + thumbs.length) % thumbs.length;
       if (index === current) return;
       current = index;
-      var src = thumbs[index].getAttribute("data-src");
       thumbs.forEach(function (thumb, i) {
         thumb.classList.toggle("is-active", i === index);
         thumb.setAttribute("aria-pressed", i === index ? "true" : "false");
       });
-
-      /* fade out, swap once the new photo is ready, fade back in */
-      var next = new Image();
-      var swapped = false;
-      function swap() {
-        if (swapped || thumbs[current].getAttribute("data-src") !== src) return;
-        swapped = true;
-        main.src = src;
-        main.classList.remove("is-swapping");
-      }
-      main.classList.add("is-swapping");
-      window.clearTimeout(swapTimer);
-      next.onload = next.onerror = function () { swapTimer = window.setTimeout(swap, 140); };
-      next.src = src;
+      paintMain();
     }
+
+    /* colour chosen on the product card */
+    gallery.addEventListener("colorchange", function (event) {
+      var next = event.detail && event.detail.rgb ? event.detail.rgb : null;
+      if (String(next) === String(rgb)) return;
+      rgb = next;
+      paintMain();
+      thumbs.forEach(function (thumb) {
+        var img = thumb.querySelector("img");
+        if (!img) return;
+        var wanted = rgb;
+        recolorPhoto(thumb.getAttribute("data-thumb-src"), rgb).then(function (url) {
+          if (wanted === rgb) img.src = url;
+        });
+      });
+    });
 
     thumbs.forEach(function (thumb, index) {
       thumb.addEventListener("click", function () { show(index); });

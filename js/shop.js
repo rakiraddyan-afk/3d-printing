@@ -17,6 +17,19 @@
     "ball-dispenser": { anchor: "ball-dispenser", name: "sports.p5.title", price: 180000, img: "img/sports/ball-dispenser-1.jpg" }
   };
 
+  /* Filament colours offered. "black" is the photographed colour; the rest are digital previews. */
+  var COLORS = [
+    { id: "black",  rgb: null,            swatch: "#1f2022" },
+    { id: "white",  rgb: [238, 238, 234], swatch: "#eeeeea" },
+    { id: "grey",   rgb: [140, 144, 150], swatch: "#8c9096" },
+    { id: "blue",   rgb: [28, 84, 180],   swatch: "#1c54b4" },
+    { id: "red",    rgb: [196, 38, 40],   swatch: "#c42628" },
+    { id: "orange", rgb: [240, 110, 26],  swatch: "#f06e1a" }
+  ];
+  function colorById(id) {
+    return COLORS.filter(function (color) { return color.id === id; })[0] || COLORS[0];
+  }
+
   function t(key) {
     return window.i18n ? window.i18n.t(key) : key;
   }
@@ -25,9 +38,16 @@
     return "Rp " + String(Math.round(amount)).replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   }
 
-  function productLabel(id) {
-    var product = PRODUCTS[id];
-    return t(product.name) + (product.variant ? " (" + t(product.variant) + ")" : "");
+  function optionsLabel(item) {
+    var product = PRODUCTS[item.id];
+    var parts = [];
+    if (product.variant) parts.push(t(product.variant));
+    parts.push(t("shop.color." + colorById(item.color).id));
+    return parts.join(", ");
+  }
+
+  function productLabel(item) {
+    return t(PRODUCTS[item.id].name) + " (" + optionsLabel(item) + ")";
   }
 
   function clampQty(value) {
@@ -50,7 +70,7 @@
     if (!Array.isArray(items)) return [];
     return items
       .filter(function (item) { return item && PRODUCTS[item.id]; })
-      .map(function (item) { return { id: item.id, qty: clampQty(item.qty) }; });
+      .map(function (item) { return { id: item.id, color: colorById(item.color).id, qty: clampQty(item.qty) }; });
   }
 
   function writeCart(items) {
@@ -63,22 +83,26 @@
     updateCount();
   }
 
-  function addToCart(id, qty) {
+  function sameLine(item, id, color) {
+    return item.id === id && item.color === color;
+  }
+
+  function addToCart(id, color, qty) {
     var items = readCart();
-    var existing = items.filter(function (item) { return item.id === id; })[0];
+    var existing = items.filter(function (item) { return sameLine(item, id, color); })[0];
     if (existing) existing.qty = clampQty(existing.qty + qty);
-    else items.push({ id: id, qty: clampQty(qty) });
+    else items.push({ id: id, color: color, qty: clampQty(qty) });
     writeCart(items);
   }
 
-  function setQty(id, qty) {
+  function setQty(id, color, qty) {
     var items = readCart();
-    items.forEach(function (item) { if (item.id === id) item.qty = clampQty(qty); });
+    items.forEach(function (item) { if (sameLine(item, id, color)) item.qty = clampQty(qty); });
     writeCart(items);
   }
 
-  function removeFromCart(id) {
-    writeCart(readCart().filter(function (item) { return item.id !== id; }));
+  function removeFromCart(id, color) {
+    writeCart(readCart().filter(function (item) { return !sameLine(item, id, color); }));
   }
 
   function cartCount(items) {
@@ -214,13 +238,45 @@
         block.appendChild(group);
       }
 
+      var colorId = colorById(block.getAttribute("data-color")).id;
+      var gallery = block.parentNode.querySelector("[data-gallery]");
+      var colorLabel = el("p", "buy-color-label");
+      var swatches = el("div", "swatches");
+      swatches.setAttribute("role", "radiogroup");
+      swatches.setAttribute("aria-label", t("shop.color"));
+      var swatchButtons = COLORS.map(function (color) {
+        var swatch = el("button", "swatch");
+        swatch.type = "button";
+        swatch.style.backgroundColor = color.swatch;
+        swatch.setAttribute("role", "radio");
+        swatch.setAttribute("aria-label", t("shop.color." + color.id));
+        swatch.title = t("shop.color." + color.id);
+        swatch.addEventListener("click", function () { chooseColor(color.id, true); });
+        swatches.appendChild(swatch);
+        return swatch;
+      });
+      var chooseColor = function (id, repaint) {
+        colorId = id;
+        block.setAttribute("data-color", id);
+        colorLabel.textContent = t("shop.color") + ": " + t("shop.color." + id) + (id === "black" ? "" : " (" + t("shop.colorPreview") + ")");
+        swatchButtons.forEach(function (swatch, index) {
+          var active = COLORS[index].id === id;
+          swatch.classList.toggle("is-active", active);
+          swatch.setAttribute("aria-checked", active ? "true" : "false");
+        });
+        if (repaint && gallery) gallery.dispatchEvent(new CustomEvent("colorchange", { detail: { rgb: colorById(id).rgb } }));
+      };
+      chooseColor(colorId, false);
+      block.appendChild(colorLabel);
+      block.appendChild(swatches);
+
       var row = el("div", "buy-row");
       var stepper = qtyStepper(1);
       var addBtn = el("button", "btn btn-primary btn-sm buy-add", t("shop.add"));
       addBtn.type = "button";
       addBtn.addEventListener("click", function () {
-        addToCart(current, stepper.getValue());
-        showToast(productLabel(current) + " x " + stepper.getValue());
+        addToCart(current, colorId, stepper.getValue());
+        showToast(productLabel({ id: current, color: colorId }) + " x " + stepper.getValue());
         addBtn.textContent = t("shop.added");
         addBtn.classList.add("is-added");
         window.setTimeout(function () {
@@ -263,7 +319,10 @@
       nameLink.href = "sports.html#" + product.anchor;
       nameEl.appendChild(nameLink);
       info.appendChild(nameEl);
-      if (product.variant) info.appendChild(el("p", "cart-item-variant", t(product.variant)));
+      info.appendChild(el("p", "cart-item-variant", optionsLabel(item)));
+      if (colorById(item.color).rgb && window.twoLifeRecolor) {
+        window.twoLifeRecolor(product.img, colorById(item.color).rgb).then(function (url) { img.src = url; });
+      }
       info.appendChild(el("p", "cart-item-unit", rupiah(product.price) + " " + t("shop.perPiece")));
       row.appendChild(info);
 
@@ -271,16 +330,16 @@
       var lineTotal = el("p", "cart-item-total", rupiah(product.price * item.qty));
       controls.appendChild(qtyStepper(item.qty, function (qty) {
         /* update the numbers in place so the list does not jump */
-        setQty(item.id, qty);
+        setQty(item.id, item.color, qty);
         lineTotal.textContent = rupiah(product.price * qty);
         updateSubtotal();
       }));
       controls.appendChild(lineTotal);
       var remove = el("button", "cart-item-remove", t("shop.remove"));
       remove.type = "button";
-      remove.setAttribute("aria-label", t("shop.remove") + ": " + productLabel(item.id));
+      remove.setAttribute("aria-label", t("shop.remove") + ": " + productLabel(item));
       remove.addEventListener("click", function () {
-        removeFromCart(item.id);
+        removeFromCart(item.id, item.color);
         updateSubtotal();
         row.style.height = row.offsetHeight + "px";
         void row.offsetHeight;
@@ -314,7 +373,7 @@
     var lines = [t("shop.msg.hello"), ""];
     items.forEach(function (item, index) {
       var product = PRODUCTS[item.id];
-      lines.push((index + 1) + ". " + productLabel(item.id) + " x " + item.qty + " = " + rupiah(product.price * item.qty));
+      lines.push((index + 1) + ". " + productLabel(item) + " x " + item.qty + " = " + rupiah(product.price * item.qty));
     });
     lines.push("");
     lines.push(t("shop.subtotal") + ": " + rupiah(cartSubtotal(items)));

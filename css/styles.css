@@ -1500,3 +1500,19 @@ html[data-page="cart"] .action-bar-quote{ display:none; }
 /* Home: equal space above and below the Automotive / Sports cards */
 .divisions{ padding: clamp(40px, 5vw, 64px) 0; }
 .division-icon{ display:flex; align-items:center; height: 34px; }
+
+/* ============ Colour choice ============ */
+.buy-color-label{ margin: 0 0 8px; font-size: 0.86rem; color: var(--grey-ink); }
+.swatches{ display:flex; flex-wrap:wrap; gap: 8px; margin-bottom: 14px; }
+.swatch{
+  position: relative;
+  width: 34px; height: 34px; padding: 0;
+  border-radius: 999px; border: 1px solid rgba(0,0,0,0.22);
+  cursor: pointer;
+  transition: transform 160ms var(--ease-out), box-shadow 200ms var(--ease-out);
+}
+.swatch::after{ content:""; position:absolute; inset:-6px; } /* comfortable tap area */
+.swatch:hover{ transform: scale(1.08); }
+.swatch:active{ transform: scale(0.94); }
+.swatch.is-active{ box-shadow: 0 0 0 2px #fff, 0 0 0 4px var(--black); }
+.swatch:focus-visible{ outline: 2px solid var(--orange); outline-offset: 5px; }
